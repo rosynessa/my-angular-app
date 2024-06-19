@@ -1,14 +1,24 @@
+<body>
+  
 
-<header>
-    <div class="container">
-        <a href="#" routerLink = "/" class="Logo">Big Momma's Kitchen</a>
+  <div class="search-container">
+    <input 
+      type="text"
+      placeholder="Enter city name..."
+      [(ngModel)]="searchQuery"
+      (keyup)="onSearch()"
+    />
+    <button (click)="onSearch()">Search</button>
+  </div>
+  
 
-        <nav>
-            <ul>
-                <li>
-                    <a href="#" routerLink = "/" class="/cart-page">Cart</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
+
+  
+   
+  
+      
+  
+    
+
+
+
