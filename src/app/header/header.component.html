@@ -1,16 +1,12 @@
 <body>
   
 
-  <div class="search-container">
-    <input 
-      type="text"
-      placeholder="Enter city name..."
-      [(ngModel)]="searchQuery"
-      (keyup)="onSearch()"
-    />
-    <button (click)="onSearch()">Search</button>
-  </div>
-  
+ <!-- header.component.html -->
+<form (ngSubmit)="onSubmit()">
+  <input type="number" [(ngModel)]="latitude" placeholder="Latitude">
+  <input type="number" [(ngModel)]="longitude" placeholder="Longitude">
+  <button type="submit">Search</button>
+</form>
 
 
   

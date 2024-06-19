@@ -19,10 +19,6 @@ export class WeatherinfoComponent implements OnInit {
 
   constructor(private weatherserviceService:WeatherserviceService){
 
-    fetchWeather(city: string) {
-      this.weatherService.getWeather(city).subscribe(data => {
-        this.weatherData = data;
-      });
+    
   }
   }
-}

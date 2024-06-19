@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { RouterLink, RouterModule } from '@angular/router';
+import { WeatherserviceService } from '../weatherservice.service';
 
 
 
@@ -15,29 +16,35 @@ import { RouterLink, RouterModule } from '@angular/router';
   RouterModule,
   RouterLink,
   CommonModule, 
-  FormsModule
+  FormsModule,
+  WeatherserviceService,
+
  ],
  
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent {
+  @Output() weatherSearch = new EventEmitter<{ lat:number, lon:number}>();
+ 
+
+  latitude: number =0;
+  longitude:number = 0;
+
+  constructor(private weatherserviceservice:WeatherserviceService){ }
 
 
-  searchQuery: string=' ';
 
-  
-  ngOnInit(): void {
-         
+  onSubmit(){
+    this.weatherSearch.emit({lat:this.latitude, lon:this.longitude})
   }
-  constructor(){ }
+ 
+
+ 
+
 
      
 
-     onSearch(){
-      if (this.searchQuery) {
-        console.log('Searching for:', this.searchQuery);
-      }
-    }
+    
   }
 
