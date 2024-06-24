@@ -7,24 +7,19 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class WeatherserviceService {
   
-  private apiUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid';
+apiKey = '66b2cf94bb6f33eb40d614bc6102a424';
 
 
+  constructor(private httpClient: HttpClient) { }
 
-  constructor(private http: HttpClient) { }
+ public getWeather(city:String){
+  console.log(city)
+  this.httpClient.get('https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.apiKey}');
+ }
 
-  getCurrentWeather(lat: number, lon: number){
-    const params={
 
-      lat:lat,
-      lon:lon,
-      units:'metric',
-      appid: '66b2cf94bb6f33eb40d614bc6102a424'
-      
-    };
-
-    return this.http.get(this.apiUrl, {params})
   }
-}
+

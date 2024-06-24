@@ -1,50 +1,40 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+// import { CommonModule } from '@angular/common';
+// import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+// import { FormsModule } from '@angular/forms';
 
-import { RouterLink, RouterModule } from '@angular/router';
-import { WeatherserviceService } from '../weatherservice.service';
+// import { RouterLink, RouterModule } from '@angular/router';
+// import { WeatherserviceService } from '../weatherservice.service';
 
 
 
-@Component({
-  selector: 'app-header',
+// @Component({
+//   selector: 'app-header',
   
- standalone:true,
+//  standalone:true,
 
- imports: [
-  RouterModule,
-  RouterLink,
-  CommonModule, 
-  FormsModule,
-  WeatherserviceService,
+//  imports: [
+//   RouterModule,
+//   RouterLink,
+//   CommonModule, 
+//   FormsModule,
 
- ],
+//  ],
  
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
-})
-export class HeaderComponent {
-  @Output() weatherSearch = new EventEmitter<{ lat:number, lon:number}>();
+//   templateUrl: './header.component.html',
+//   styleUrls: ['./header.component.css']
+// })
+// export class HeaderComponent implements OnInit{
  
 
-  latitude: number =0;
-  longitude:number = 0;
-
-  constructor(private weatherserviceservice:WeatherserviceService){ }
-
-
-
-  onSubmit(){
-    this.weatherSearch.emit({lat:this.latitude, lon:this.longitude})
-  }
- 
-
- 
+  
+//   ngOnInit(): void {
+         
+//   }
+//   constructor(private weatherserviceservice:WeatherserviceService){ }
 
 
      
 
-    
-  }
 
+
+// }

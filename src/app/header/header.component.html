@@ -1,12 +1,23 @@
-<body>
+<!--<body>
   
 
- <!-- header.component.html -->
-<form (ngSubmit)="onSubmit()">
-  <input type="number" [(ngModel)]="latitude" placeholder="Latitude">
-  <input type="number" [(ngModel)]="longitude" placeholder="Longitude">
-  <button type="submit">Search</button>
-</form>
+  <div class="search-container">
+    <input 
+      type="text"
+      placeholder="lat..."
+      [(ngModel)]="latitude"
+      (keyup)="searchWeather()"
+    />
+    <input 
+      type="text"
+      placeholder="lon..."
+      [(ngModel)]="longitude"
+      (keyup)="searchWeather()"
+    />
+
+    <button (click)="onSearch()">Search</button>
+  </div>
+  
 
 
   

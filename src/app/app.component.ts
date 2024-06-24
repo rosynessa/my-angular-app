@@ -1,11 +1,12 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { WeatherserviceService } from './weatherservice.service';
+import { FormsModule } from '@angular/forms';
+// import { HeaderComponent } from './header/header.component';
+
 
 
 
@@ -17,16 +18,18 @@ import { WeatherserviceService } from './weatherservice.service';
   RouterOutlet,
  RouterLink,
   HomeComponent,
-  HeaderComponent,
+  FormsModule,
+  // HeaderComponent,
   RouterLinkActive,
-  WeatherserviceService
+  
+
   
  ],
 
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
 
   
   
@@ -40,5 +43,5 @@ export class AppComponent implements OnInit{
   }
  
 
-title = 'my-angular-app';
+title = 'weather app';
 }
