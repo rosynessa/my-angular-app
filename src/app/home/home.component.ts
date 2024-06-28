@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 
 
 
-
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -19,8 +18,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomeComponent {
   title= 'homepage';
-  city!: string;
+  city: string = 'Nairobi';
 weatherData:any;
+hourlyData:any;
   
 
 
@@ -28,14 +28,30 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
 
 
   ngOnInit(): void{
-   this.city = 'Nairobi'
+   this.getWeather();
+   this.getForecastWeather();
     
   }
 
-  getWeather(){
+  getWeather(): void{
     this.weatherserviceservice.getWeather(this.city).subscribe((data: any) => {
       this.weatherData = data;
+     
       console.log(data); 
+     
+    
     })
   }
+
+  kelvinToCelsius(tempKelvin: number): number {
+    return tempKelvin - 273.15;
+  }
+
+  getForecastWeather(): void{
+    this.weatherserviceservice.getForecastWeather(this.city).subscribe((data:any) => {
+      this.hourlyData = data[0].hourlyData ;
+      console.log(this.hourlyData);
+    })
+  }
+  
 }

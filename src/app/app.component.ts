@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 // import { HeaderComponent } from './header/header.component';
-
-
 
 
 @Component({
@@ -19,6 +18,7 @@ import { FormsModule } from '@angular/forms';
  RouterLink,
   HomeComponent,
   FormsModule,
+
   // HeaderComponent,
   RouterLinkActive,
   

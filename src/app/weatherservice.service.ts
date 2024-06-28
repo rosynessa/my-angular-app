@@ -10,16 +10,20 @@ import { Observable } from 'rxjs';
 
 export class WeatherserviceService {
   
-apiKey = '66b2cf94bb6f33eb40d614bc6102a424';
-
+apiKey = 'e081fa0e5d1faefa897dd283f78f0b3e';
+foreCastKey = '7BHY5DJ48XZFDZULEZ6VMQLKN';
 
   constructor(private httpClient: HttpClient) { }
 
- public getWeather(city:String){
+ public getWeather(city:String): Observable<any>{
   console.log(city)
-  this.httpClient.get('https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.apiKey}');
+  return this.httpClient.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.apiKey}`);
  }
 
+ public getForecastWeather(city:String): Observable<any>{
+  console.log(city)
+  return this.httpClient.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=us&key=${this.foreCastKey}&contentType=json`);
 
   }
 
+}
