@@ -6,7 +6,7 @@
         <div class="row">
           <form class="col" id="search-form">
            <input type="text" name="cityName" placeholder="Enter a city name" [(ngModel)]="city">
-            <button type="button" (click)="getWeather()">Search</button>
+            <button type="button" (click)="getWeather()" (click) ="getForecastWeather()">Search</button>
           </form>
 
     <div class="weather-section" *ngIf="weatherData" >
@@ -15,15 +15,31 @@
         
         <div class="weather-icon">
   
-            <span class="material-icons forecast-icon" *ngIf="weatherData.main.temp > 200 ">wb_cloudy</span>
+            <span class="material-icons forecast-icon sunny-icon" *ngIf="weatherData.main.temp > 23">wb_sunny</span>
+            <span class="material-icons forecast-icon" *ngIf="weatherData.main.temp < 23 ">wb_cloudy</span>
+
         </div>
         <p class="weather-humidity">Humidity: {{ weatherData.main.humidity }}%</p>
         <p class = "weather-description">Weather: {{weatherData.weather[0].description}}</p>
     </div>
+        </div>
+        
 
     <div  class="forecast-section" *ngIf="hourlyData && hourlyData.length">
     <h2 class="forecast-title">Hourly Forecast</h2>
+    <div class="forecast-container">
     <div class="forecast-hour" *ngFor="let hour of hourlyData">
-      <p>{{ hour.datetime }}: {{ hour.temp | number:'1.0-1' }}°C</p>
+      <p>{{ hour.datetime }}</p>
+      <div class="forecast-temp">
+        <p>{{ hour.temp | number:'1.0-1' }}°C</p>
+    
+      <span class="material-icons forecast-icon sunny-icon" *ngIf=" hour.temp > 20" >wb_sunny</span>
+            <span class="material-icons forecast-icon" *ngIf="hour.temp < 20 ">wb_cloudy</span>
 
+          </div>
+        </div>
     </div>
+    <button class="scroll-button left" (click)="scrollLeft()">&#10094;</button>
+    <button class="scroll-button right" (click)="scrollRight()">&#10095;</button>
+</div>
+</section>

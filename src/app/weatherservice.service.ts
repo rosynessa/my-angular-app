@@ -22,7 +22,7 @@ foreCastKey = '7BHY5DJ48XZFDZULEZ6VMQLKN';
 
  public getForecastWeather(city:String): Observable<any>{
   console.log(city)
-  return this.httpClient.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=us&key=${this.foreCastKey}&contentType=json`);
+  return this.httpClient.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=${this.foreCastKey}&contentType=json`);
 
   }
 

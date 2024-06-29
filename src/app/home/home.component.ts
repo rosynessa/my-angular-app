@@ -36,9 +36,8 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
   getWeather(): void{
     this.weatherserviceservice.getWeather(this.city).subscribe((data: any) => {
       this.weatherData = data;
-     
       console.log(data); 
-     
+      this.weatherData.main.temp = this.kelvinToCelsius(this.weatherData.main.temp);
     
     })
   }
@@ -49,9 +48,18 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
 
   getForecastWeather(): void{
     this.weatherserviceservice.getForecastWeather(this.city).subscribe((data:any) => {
-      this.hourlyData = data[0].hourlyData ;
-      console.log(this.hourlyData);
+      this.hourlyData = data.days[0].hours ;
+      console.log(data.hourly);
     })
   }
   
+  scrollLeft() {
+    const container = document.querySelector('.forecast-container') as HTMLElement;
+    container.scrollBy({ left: -100, behavior: 'smooth' });
+  }
+
+  scrollRight() {
+    const container = document.querySelector('.forecast-container') as HTMLElement;
+    container.scrollBy({ left: 100, behavior: 'smooth' });
+  }
 }

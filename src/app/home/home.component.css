@@ -21,7 +21,7 @@ align-items: center;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 970px;
+  width: 1000px;
   height: 550px;
   display: flex;
   flex-direction: column;
@@ -103,15 +103,11 @@ align-items: center;
   margin-left: 20px;
   position: absolute;
   left: 15px;
-  margin-top: 100px;
+  margin-top: 50px;
   font-size: 1.3em;
   font-weight: bold;
 }
 
-.weather-icon{
-  color: antiquewhite;
- font-weight: bold;
-}
 
 
 .weather-humidity{
@@ -121,4 +117,71 @@ align-items: center;
 .weather-description{
   font-size: 0.65em;
   
+}
+
+
+.forecast-section{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.29);
+}
+
+.forecast-container{
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  max-width: 100px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.1); 
+}
+
+.forecast-hour{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  min-width: 100px;
+}
+
+.forecast-title{
+  margin-top: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.scroll-button.left {
+  left: 10px;
+}
+
+.scroll-button.right {
+  right: 10px;
+}
+
+.material-icons.forecast-icon {
+  /* Existing styles for all icons */
+  color: aliceblue; /* Example default color */
+  font-size: 2em; /* Adjust icon size */
+  margin-right: 5px;
+}
+
+.material-icons.forecast-icon.sunny-icon {
+  color: yellow;
 }
