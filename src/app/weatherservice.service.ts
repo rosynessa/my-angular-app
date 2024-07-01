@@ -12,6 +12,7 @@ export class WeatherserviceService {
   
 apiKey = 'e081fa0e5d1faefa897dd283f78f0b3e';
 foreCastKey = '7BHY5DJ48XZFDZULEZ6VMQLKN';
+DailyKey =  '7BHY5DJ48XZFDZULEZ6VMQLKN';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -25,5 +26,12 @@ foreCastKey = '7BHY5DJ48XZFDZULEZ6VMQLKN';
   return this.httpClient.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=${this.foreCastKey}&contentType=json`);
 
   }
+
+  public getDailyWeather(city:String): Observable<any>{
+    console.log(city)
+    return this.httpClient.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&include=days&key=${this.DailyKey}&contentType=json`);
+    }
+
+
 
 }

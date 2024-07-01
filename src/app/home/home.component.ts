@@ -21,6 +21,7 @@ export class HomeComponent {
   city: string = 'Nairobi';
 weatherData:any;
 hourlyData:any;
+
   
 
 
@@ -30,6 +31,7 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
   ngOnInit(): void{
    this.getWeather();
    this.getForecastWeather();
+ 
     
   }
 
@@ -62,4 +64,8 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
     const container = document.querySelector('.forecast-container') as HTMLElement;
     container.scrollBy({ left: 100, behavior: 'smooth' });
   }
+
+ 
+
+  
 }

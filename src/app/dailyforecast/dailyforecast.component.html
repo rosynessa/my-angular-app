@@ -1,0 +1,19 @@
+<body>
+
+    <div class="weather-all3">
+    <section class="container13">
+        <div class="row3">
+          <form class="col3" id="search-form3">
+           <input type="text" name="cityName" placeholder="Enter a city name" [(ngModel)]="city">
+            <button type="button" (click)="getDailyWeather()">Search</button>
+          </form>
+
+<div  class="daily-section" >
+    <h2 class="daily-title">Daily Forecast </h2>
+    <div class="daily-container">
+    <div class = "daily-day"  *ngFor="let day of dailyData">
+      <p>Date: {{ day.datetime }}</p>
+      <p>Max Temperature: {{ day.tempmax | number:'1.0-1'}}°C</p>
+      <p>Min Temperature: {{ day.tempmin | number:'1.0-1'}}°C</p>
+    </div>
+    </div>

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DailyforecastComponent } from './dailyforecast/dailyforecast.component';
 // import { HeaderComponent } from './header/header.component';
 
 
@@ -21,6 +22,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
   // HeaderComponent,
   RouterLinkActive,
+  DailyforecastComponent
   
 
   
