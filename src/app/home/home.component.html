@@ -6,9 +6,19 @@
         <div class="row">
           <form class="col" id="search-form">
            <input type="text" name="cityName" placeholder="Enter a city name" [(ngModel)]="city">
-            <button type="button" (click)="getWeather()" (click) ="getForecastWeather()">Search</button>
+            <button type="button" (click)="getWeather()" (click) ="getForecastWeather()" (click)="getDailyWeather()">Search</button>
+           
           </form>
-
+        </div>
+    <div>
+      <label>
+        <input type="radio" name="unit" value="C" [(ngModel)] = "unit" (click)="toggleUnit('C')">Celcius
+      </label>
+      <label>
+        <input type="radio" name="unit" value="F" [(ngModel)] = "unit" (click)="toggleUnit('F')">Fahrenheit
+      </label>
+    </div>
+    
     <div class="weather-section" *ngIf="weatherData" >
         <h2 class="weather-city">{{ weatherData.name }}</h2>
         <p class="weather-temp"> {{ weatherData.main.temp | number:'1.0-1'}}°C</p>
@@ -22,26 +32,63 @@
         <p class="weather-humidity">Humidity: {{ weatherData.main.humidity }}%</p>
         <p class = "weather-description">Weather: {{weatherData.weather[0].description}}</p>
     </div>
-        </div>
+       
+    </section>
         
+   <section class="daily-section" >
+  <h2 class="daily-title">Daily Forecast </h2>
+  <div class="carousel-view">
+    <button id="previous-button" class="prev-button" (click)="scrollLeft2()"><</button>
+  <div class="daily-container">
+  <div class = "daily-day"  *ngFor="let day of dailyData">
+    <p>Date: {{ day.datetime }}</p>
+    <div class="daily-temp">
+    <p>Temperature: {{ day.temp| number:'1.0-1'}}°C</p>
+    <p>Humidity: {{day.humidity}}</p>
+    <p>Wind Speed: {{day.windspeed}}</p>
+    <p>UVI Index: {{day.uvindex}}</p>
+    <p>Conditions: {{day.conditions}}</p>
+    
+    <span class="material-icons forecast-icon sunny-icon" *ngIf=" day.tempmax > 20" >wb_sunny</span>
+            <span class="material-icons forecast-icon" *ngIf="day.tempmax < 20 ">wb_cloudy</span>
+      
 
-    <div  class="forecast-section" *ngIf="hourlyData && hourlyData.length">
+  </div>
+  </div>
+  </div>
+  <button id="next-button2" class="next-button" (click) = "scrollRight2()">></button>
+</div>
+</section>
+
+    <section class="forecast-section" *ngIf="hourlyData && hourlyData.length">
     <h2 class="forecast-title">Hourly Forecast</h2>
-    <div class="forecast-container">
+    <div class="carousel-view">
+    <button id="prev-button" class="prev-button" (click)="scrollLeft()"><</button>
+    <div class="forecast-hour-container">
     <div class="forecast-hour" *ngFor="let hour of hourlyData">
       <p>{{ hour.datetime }}</p>
       <div class="forecast-temp">
         <p>{{ hour.temp | number:'1.0-1' }}°C</p>
-    
+        <p>Humidity: {{hour.humidity}}</p>
+        <p>Wind Speed: {{hour.windspeed}}</p>
+        <p>UVI Index: {{hour.uvindex}}</p>
+        <p>Conditions: {{hour.conditions}}</p>
+        
+        
+        <span class="material-icons forecast-icon" *ngIf="hour.datetime < 6 && hour.datetime >= 18">nights_stay</span>
       <span class="material-icons forecast-icon sunny-icon" *ngIf=" hour.temp > 20" >wb_sunny</span>
             <span class="material-icons forecast-icon" *ngIf="hour.temp < 20 ">wb_cloudy</span>
 
+           
           </div>
         </div>
     </div>
-    <button class="scroll-button left" (click)="scrollLeft()">&#10094;</button>
-    <button class="scroll-button right" (click)="scrollRight()">&#10095;</button>
-</div>
-<div > 
-  <a [routerLink]="['/dailyforecast']">Daily Forecast</a>
-</div>
+    <button id="next-button" class="next-button" (click) = "scrollRight()">></button>
+    
+
+    </div>
+    </section>
+   
+
+
+

@@ -2,17 +2,11 @@
 body{
   display: flex;
   position: relative;
-background-image: url("assets/paul-pastourmatzis-KT3WlrL_bsg-unsplash.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  filter: blur(0.4px);
- width: 100%;
- height:100vh;
- border-radius: 4px;
-align-items: center;
- justify-content: center;
- filter:brightness(25px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100%;
 
 }
 
@@ -21,23 +15,19 @@ align-items: center;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 1000px;
-  height: 550px;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  border-radius: 4px;
   padding-top: 10px;
-  position: relative;
+ 
   
 }
 
 .search-section {
   text-align: center;
-  height: 50px;
-  width: 200px;
-  margin-top: 5px;
   margin-bottom: 20px;
 
 }
@@ -97,19 +87,24 @@ align-items: center;
 
 .weather-section{
  
-  justify-content: flex-start;
-  align-items: flex-end;
+  
   padding: 10px;
   margin-left: 20px;
-  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  text-align: center;
+ max-width: 90%;
   left: 15px;
   margin-top: 50px;
   font-size: 1.3em;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
-
-
+.weather-temp{
+  color: #3b4a5a;
+  font-weight: bold;
+  font-size: 2em;
+}
 .weather-humidity{
   font-size: 0.65em;
 
@@ -120,60 +115,63 @@ align-items: center;
 }
 
 
-.forecast-section{
+.carousel-view {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
   align-items: center;
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.29);
+  margin: 20px 0;
 }
 
-.forecast-container{
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  max-width: 100px;
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.1); 
-}
-
-.forecast-hour{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  min-width: 100px;
-}
-
-.forecast-title{
-  margin-top: 10px;
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.scroll-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+.prev-button,
+.next-button {
+  background-color: #3b4a5a;
   color: white;
   border: none;
   padding: 10px;
   cursor: pointer;
 }
 
-.scroll-button.left {
-  left: 10px;
+.daily-title,.forecast-title{
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-.scroll-button.right {
-  right: 10px;
+.forecast-hour-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  max-width: 100%;
+  height: 190px;
+  width: 92vw;
+  font-weight: bold;
 }
+
+.forecast-hour-container::-webkit-scrollbar, .daily-container::-webkit-scrollbar  {
+  display: none;
+}
+
+.forecast-hour, .daily-day {
+  min-width: 150px;
+  margin: 0 10px;
+  background-color: rgba(240, 240, 240, 0.15);
+  padding: 9px;
+  border: 1px solid rgba(240, 240, 240, 0.135);
+  text-align: center;
+ 
+
+}
+
+.daily-container{
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  max-width: 100%;
+  height: 190px;
+  width: 92vw;
+  font-weight: bold;
+}
+
 
 .material-icons.forecast-icon {
   /* Existing styles for all icons */
@@ -182,40 +180,9 @@ align-items: center;
   margin-right: 5px;
 }
 
+
+
 .material-icons.forecast-icon.sunny-icon {
-  color: yellow;
+  color: orange;
 }
-
-.daily-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  
-}
-
-.daily-container {
-  display: flex;
-  overflow-x: auto; /* Enables horizontal scrolling */
-  scroll-behavior: smooth; /* Smooth scrolling */
-  max-width: 100%;
-  padding: 10px;
-}
-
-.daily-day {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  min-width: 100px;
-}
-
-.daily-title {
-  margin-top: 10px;
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
 
