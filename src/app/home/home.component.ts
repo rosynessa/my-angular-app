@@ -56,7 +56,7 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
 
   getForecastWeather(): void{
     this.weatherserviceservice.getForecastWeather(this.city).subscribe((data:any) => {
-      this.hourlyData = data.days[0].hours ;
+      this.hourlyData = data.days[0].hours;
       console.log(data.hourly);
     })
   }
