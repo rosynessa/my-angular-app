@@ -19,6 +19,10 @@
          value="F" [(ngModel)] = "unit" (click)="toggleUnit('F')">Fahrenheit
       </label>
     </div>
+
+ 
+
+
     
     <div class="weather-section" *ngIf="weatherData" >
         <h2 class="weather-city">{{ weatherData.name }}</h2>
@@ -44,11 +48,11 @@
   <div class = "daily-day"  *ngFor="let day of dailyData">
     <p>Date: {{ day.datetime }}</p>
     <div class="daily-temp">
-    <p>Temperature: {{ day.temp| number:'1.0-1'}}°C</p>
-    <p>Humidity: {{day.humidity}}</p>
-    <p>Wind Speed: {{day.windspeed}}</p>
-    <p>UVI Index: {{day.uvindex}}</p>
-    <p>Conditions: {{day.conditions}}</p>
+    <p>Temperature: {{ day?.temp| number:'1.0-1'}}°C</p>
+    <p>Humidity: {{day?.humidity}}</p>
+    <p>Wind Speed: {{day?.windspeed}}</p>
+    <p>UVI Index: {{day?.uvindex}}</p>
+    <p>Conditions: {{day?.conditions}}</p>
     
     <span class="material-icons forecast-icon sunny-icon" *ngIf=" day.tempmax > 20" >wb_sunny</span>
             <span class="material-icons forecast-icon" *ngIf="day.tempmax < 20 ">wb_cloudy</span>

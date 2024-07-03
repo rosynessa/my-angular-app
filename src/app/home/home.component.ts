@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
   imports:[RouterModule,
     FormsModule,
     CommonModule,
+  
     
    
   ],
@@ -25,7 +26,7 @@ weatherData:any;
 hourlyData:any[] = [];
 dailyData:any[] = [];
 unit: string = 'C';
-  
+isLoading: boolean=false;
 
 constructor(private weatherserviceservice:WeatherserviceService){ }
 
@@ -38,10 +39,13 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
   }
 
   getWeather(): void{
+    this.isLoading = true;
     this.weatherserviceservice.getWeather(this.city).subscribe((data: any) => {
       this.weatherData = data;
+      this.convertDailyData();
       console.log(data); 
       this.weatherData.main.temp = this.kelvinToCelsius(this.weatherData.main.temp);
+      this.isLoading=true;
     
     })
   }
@@ -55,18 +59,22 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
   }
 
   getForecastWeather(): void{
+    this.isLoading = true;
     this.weatherserviceservice.getForecastWeather(this.city).subscribe((data:any) => {
       this.hourlyData = data.days[0].hours;
       console.log(data.hourly);
+      this.isLoading=true;
     })
   }
   
   
   getDailyWeather():void{
+    this.isLoading = true;
     this.weatherserviceservice.getDailyWeather(this.city).subscribe((data:any) =>{
       console.log(data);
       this.dailyData = data.days;
       console.log(this.dailyData);
+      this.isLoading=true;
      
 
     })
