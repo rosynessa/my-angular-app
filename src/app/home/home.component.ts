@@ -4,6 +4,33 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { WeatherserviceService } from '../weatherservice.service';
 import { FormsModule } from '@angular/forms';
 
+interface WeatherData {
+  main: {
+    temp: number;
+  };
+  name: string;
+}
+
+interface HourlyData {
+  temp: number;
+  // Add other properties if needed
+}
+
+interface DailyData {
+  temp: number;
+  // Add other properties if needed
+}
+
+export interface ForecastData {
+  days: {
+    hours: HourlyData[];
+  }[];
+}
+
+export interface DailyForecastData {
+  days: DailyData[];
+}
+
 
 
 @Component({
@@ -13,8 +40,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     CommonModule,
   
-    
-   
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -25,8 +50,9 @@ export class HomeComponent {
 weatherData:any;
 hourlyData:any[] = [];
 dailyData:any[] = [];
-unit: string = 'C';
-isLoading: boolean=false;
+isLoading: boolean = false;
+isCelcius: boolean= true;
+
 
 constructor(private weatherserviceservice:WeatherserviceService){ }
 
@@ -37,16 +63,17 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
    this.getDailyWeather();
     
   }
+  
 
   getWeather(): void{
-    this.isLoading = true;
+   this.isLoading=true;
     this.weatherserviceservice.getWeather(this.city).subscribe((data: any) => {
       this.weatherData = data;
-      this.convertDailyData();
       console.log(data); 
       this.weatherData.main.temp = this.kelvinToCelsius(this.weatherData.main.temp);
-      this.isLoading=true;
-    
+      this.isLoading = false;
+    }, error => {
+      this.isLoading = false;
     })
   }
 
@@ -54,16 +81,19 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
     return tempKelvin - 273.15;
   }
 
-  kelvinToFahrenheit(tempKelvin: number):number{
-    return (tempKelvin - 273.15) * 9 / 5 + 32;
-  }
 
   getForecastWeather(): void{
-    this.isLoading = true;
+   this.isLoading = true;
     this.weatherserviceservice.getForecastWeather(this.city).subscribe((data:any) => {
-      this.hourlyData = data.days[0].hours;
+      this.hourlyData = data.days[0].hours.map((hour:HourlyData) => ({
+        ...hour,
+        temp: this.convertTemperature(this.kelvinToCelsius(hour.temp))
+      }));
       console.log(data.hourly);
-      this.isLoading=true;
+      
+      this.isLoading = false;
+    }, error => {
+      this.isLoading = false;
     })
   }
   
@@ -72,12 +102,16 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
     this.isLoading = true;
     this.weatherserviceservice.getDailyWeather(this.city).subscribe((data:any) =>{
       console.log(data);
-      this.dailyData = data.days;
+      this.dailyData = data.days.map((day: DailyData) => ({
+        ...day,
+        temp: this.convertTemperature(this.kelvinToCelsius(day.temp))
+      }));
       console.log(this.dailyData);
-      this.isLoading=true;
-     
-
+      this.isLoading = false;
+    }, error => {
+      this.isLoading = false;
     })
+    
   }
 
   scrollLeft() {
@@ -100,44 +134,33 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
     container.scrollBy({ left: 1000, behavior: 'smooth' });
   }
 
-  toggleUnit(unit:string): void{
-    if (this.unit !== unit){
-      this.unit = unit;
-      this.convertWeatherData();
-      this.convertForecastData();
-      this.convertDailyData();
+  toggleTemperatureUnit() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isCelcius = !this.isCelcius;
+      // Convert existing temperatures to the new unit
+      this.weatherData.main.temp = this.convertTemperature(this.weatherData.main.temp);
 
+      this.hourlyData = this.hourlyData.map(hour => ({
+        ...hour,
+        temp: this.convertTemperature(hour.temp)
+      }));
+
+      this.dailyData = this.dailyData.map(day => ({
+        ...day,
+        temp: this.convertTemperature(day.temp)
+      }));
+
+      this.isLoading = false;
+    }, 500);
+  }
+
+  convertTemperature(temp: number): number {
+    if (this.isCelcius) {
+      // Convert Kelvin to Celsius if necessary
+      return temp;
+    } else {
+      // Convert Celsius to Fahrenheit rounded to 2 decimal points
+      return parseFloat(((temp * 9 / 5) + 32).toFixed(2));
     }
-  }
-
-  convertWeatherData():void{
-    if (this.unit === 'C'){
-      this.weatherData.main.temp = this.kelvinToCelsius(this.weatherData.main.temp);
-    }else{
-      this.weatherData.main.temp = this.kelvinToFahrenheit(this.weatherData.main.temp);
-    }
-  }
-  convertForecastData(): void {
-    this.hourlyData.forEach(hour => {
-      if (this.unit === 'C') {
-        hour.temp = this.kelvinToCelsius(hour.temp);
-      } else {
-        hour.temp = this.kelvinToFahrenheit(hour.temp);
-      }
-    });
-  }
-
-    convertDailyData(): void {
-    this.dailyData.forEach(day => {
-      if (this.unit === 'C') {
-        day.temp = this.kelvinToCelsius(day.temp);
-        
-      } else {
-        day.temp = this.kelvinToFahrenheit(day.temp);
-       
-      }
-    });
-  }
-
-
-}
+  }}

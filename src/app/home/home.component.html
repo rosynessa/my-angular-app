@@ -8,22 +8,16 @@
            <input type="text" name="cityName" placeholder="Enter a city name" [(ngModel)]="city">
             <button type="button" (click)="getWeather()" (click) ="getForecastWeather()" (click)="getDailyWeather()">Search</button>
            
+            <button type="button" (click)="toggleTemperatureUnit()">Toggle °C/°F</button>
+         
           </form>
         </div>
-    <div>
-      <label>
-        <input type="radio" value="C" [(ngModel)] = "unit" >Celcius
-      </label>
-      <label>
-        <input type="radio" 
-         value="F" [(ngModel)] = "unit" (click)="toggleUnit('F')">Fahrenheit
-      </label>
-    </div>
 
- 
+        <div *ngIf="isLoading" class="loading-indicator">
+          Loading...
+        </div>
 
-
-    
+    <div *ngIf = "!isLoading">
     <div class="weather-section" *ngIf="weatherData" >
         <h2 class="weather-city">{{ weatherData.name }}</h2>
         <p class="weather-temp"> {{ weatherData?.main?.temp | number:'1.0-1'}}°C</p>
@@ -38,7 +32,7 @@
         <p class = "weather-description">Weather: {{weatherData.weather[0].description}}</p>
     </div>
        
-    </section>
+
         
    <section class="daily-section" >
   <h2 class="daily-title">Daily Forecast </h2>
@@ -92,7 +86,7 @@
     
 
     </div>
-    </section>
+   
    
 
 

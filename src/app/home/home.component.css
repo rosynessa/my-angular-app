@@ -115,10 +115,9 @@ body{
 }
 
 .loading-indicator {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 20px;
 }
 
 .carousel-view {
