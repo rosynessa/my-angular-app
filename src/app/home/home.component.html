@@ -7,11 +7,15 @@
           <form class="col" id="search-form">
            <input type="text" name="cityName" placeholder="Enter a city name" [(ngModel)]="city">
             <button type="button" (click)="getWeather()" (click) ="getForecastWeather()" (click)="getDailyWeather()">Search</button>
-           
-            <button type="button" (click)="toggleTemperatureUnit()">Toggle °C/°F</button>
+            ( <button type="button" (click) ="toggleTemperatureUnit()">
+              Switch to {{ isCelsius ? 'Fahrenheit' : 'Celsius' }}
+            </button>)
          
           </form>
         </div>
+        <div>
+        <a [routerLink]="['/history']">History</a>
+      </div>
 
         <div *ngIf="isLoading" class="loading-indicator">
           Loading...
@@ -20,9 +24,9 @@
     <div *ngIf = "!isLoading">
     <div class="weather-section" *ngIf="weatherData" >
         <h2 class="weather-city">{{ weatherData.name }}</h2>
-        <p class="weather-temp"> {{ weatherData?.main?.temp | number:'1.0-1'}}°C</p>
+        <p class="weather-temp"> {{ weatherData?.main?.temp | number:'1.0-1'}}° {{isCelsius ? 'C' : 'F'}}</p>
         
-        <div class="weather-icon">
+     <div class="weather-icon">
   
             <span class="material-icons forecast-icon sunny-icon" *ngIf="weatherData.main.temp > 23">wb_sunny</span>
             <span class="material-icons forecast-icon" *ngIf="weatherData.main.temp < 23 ">wb_cloudy</span>
@@ -31,7 +35,6 @@
         <p class="weather-humidity">Humidity: {{ weatherData.main.humidity }}%</p>
         <p class = "weather-description">Weather: {{weatherData.weather[0].description}}</p>
     </div>
-       
 
         
    <section class="daily-section" >
@@ -42,15 +45,17 @@
   <div class = "daily-day"  *ngFor="let day of dailyData">
     <p>Date: {{ day.datetime }}</p>
     <div class="daily-temp">
-    <p>Temperature: {{ day?.temp| number:'1.0-1'}}°C</p>
+    <p> {{ day?.temp| number:'1.0-1'}}° {{isCelsius ? 'C': 'F'}}</p>
     <p>Humidity: {{day?.humidity}}</p>
     <p>Wind Speed: {{day?.windspeed}}</p>
     <p>UVI Index: {{day?.uvindex}}</p>
     <p>Conditions: {{day?.conditions}}</p>
+    <p>{{day.icon}}</p>
     
+ 
     <span class="material-icons forecast-icon sunny-icon" *ngIf=" day.tempmax > 20" >wb_sunny</span>
             <span class="material-icons forecast-icon" *ngIf="day.tempmax < 20 ">wb_cloudy</span>
-      
+  
 
   </div>
   </div>
@@ -67,7 +72,7 @@
     <div class="forecast-hour" *ngFor="let hour of hourlyData">
       <p>{{ hour.datetime }}</p>
       <div class="forecast-temp">
-        <p>{{ hour.temp | number:'1.0-1' }}°C</p>
+        <p>{{ hour.temp | number:'1.0-1' }}° {{isCelsius ? 'C' : 'F'}}</p>
         <p>Humidity: {{hour.humidity}}</p>
         <p>Wind Speed: {{hour.windspeed}}</p>
         <p>UVI Index: {{hour.uvindex}}</p>

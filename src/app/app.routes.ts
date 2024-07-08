@@ -3,6 +3,7 @@ import { WeatherserviceService } from './weatherservice.service';
 import { AppComponent } from './app.component';
 // import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { WeatherhistoryComponent } from './weatherhistory/weatherhistory.component';
 
 export const routes: Routes = [
 
@@ -16,6 +17,10 @@ export const routes: Routes = [
     component:HomeComponent,
 },
 
+{
+    path: 'history',
+    component:WeatherhistoryComponent,
+}
 
 
 

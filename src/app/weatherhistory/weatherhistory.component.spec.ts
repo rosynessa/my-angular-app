@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FavouritecitiesComponent } from './favouritecities.component';
+import { WeatherhistoryComponent } from './weatherhistory.component';
 
-describe('FavouritecitiesComponent', () => {
-  let component: FavouritecitiesComponent;
-  let fixture: ComponentFixture<FavouritecitiesComponent>;
+describe('WeatherhistoryComponent', () => {
+  let component: WeatherhistoryComponent;
+  let fixture: ComponentFixture<WeatherhistoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FavouritecitiesComponent]
+      imports: [WeatherhistoryComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FavouritecitiesComponent);
+    fixture = TestBed.createComponent(WeatherhistoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

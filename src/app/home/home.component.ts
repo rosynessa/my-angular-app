@@ -1,117 +1,81 @@
-import { CommonModule, DatePipe } from '@angular/common';
-import { Component, NgModule, OnInit } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { WeatherserviceService } from '../weatherservice.service';
 import { FormsModule } from '@angular/forms';
-
-interface WeatherData {
-  main: {
-    temp: number;
-  };
-  name: string;
-}
-
-interface HourlyData {
-  temp: number;
-  // Add other properties if needed
-}
-
-interface DailyData {
-  temp: number;
-  // Add other properties if needed
-}
-
-export interface ForecastData {
-  days: {
-    hours: HourlyData[];
-  }[];
-}
-
-export interface DailyForecastData {
-  days: DailyData[];
-}
-
-
+import { ConversionService } from '../conversion.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports:[RouterModule,
-    FormsModule,
-    CommonModule,
-  
-  ],
+  imports: [RouterModule, FormsModule, CommonModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  title= 'homepage';
+export class HomeComponent implements OnInit {
+  title = 'homepage';
   city: string = 'Nairobi';
-weatherData:any;
-hourlyData:any[] = [];
-dailyData:any[] = [];
-isLoading: boolean = false;
-isCelcius: boolean= true;
+  weatherData: any;
+  hourlyData: any[] = [];
+  dailyData: any[] = [];
+  isLoading: boolean = false;
+  isCelsius: boolean = true;
 
+  constructor(
+    private weatherserviceservice: WeatherserviceService,
+    private conversionservice: ConversionService
+  ) { }
 
-constructor(private weatherserviceservice:WeatherserviceService){ }
-
-
-  ngOnInit(): void{
-   this.getWeather();
-   this.getForecastWeather();
-   this.getDailyWeather();
-    
+  ngOnInit(): void {
+    this.getWeather();
+    this.getForecastWeather();
+    this.getDailyWeather();
   }
-  
 
-  getWeather(): void{
-   this.isLoading=true;
+  getWeather(): void {
+    this.isLoading = true;
     this.weatherserviceservice.getWeather(this.city).subscribe((data: any) => {
       this.weatherData = data;
-      console.log(data); 
+      console.log(data);
       this.weatherData.main.temp = this.kelvinToCelsius(this.weatherData.main.temp);
-      this.isLoading = false;
+      this.isLoading= false;
+      this.saveWeatherHistory;
     }, error => {
       this.isLoading = false;
-    })
+    });
   }
 
   kelvinToCelsius(tempKelvin: number): number {
     return tempKelvin - 273.15;
   }
 
-
-  getForecastWeather(): void{
-   this.isLoading = true;
-    this.weatherserviceservice.getForecastWeather(this.city).subscribe((data:any) => {
-      this.hourlyData = data.days[0].hours.map((hour:HourlyData) => ({
-        ...hour,
-        temp: this.convertTemperature(this.kelvinToCelsius(hour.temp))
-      }));
+  getForecastWeather(): void {
+    this.isLoading = true;
+    this.weatherserviceservice.getForecastWeather(this.city).subscribe((data: any) => {
       console.log(data.hourly);
-      
+      this.hourlyData = data.days[0].hours.map((hour: any) => ({
+        ...hour,
+        temp: hour.temp
+      }));
       this.isLoading = false;
     }, error => {
       this.isLoading = false;
-    })
+    });
   }
-  
-  
-  getDailyWeather():void{
+
+  getDailyWeather(): void {
     this.isLoading = true;
-    this.weatherserviceservice.getDailyWeather(this.city).subscribe((data:any) =>{
+    this.weatherserviceservice.getDailyWeather(this.city).subscribe((data: any) => {
       console.log(data);
-      this.dailyData = data.days.map((day: DailyData) => ({
+      this.dailyData = data.days.map((day: any) => ({
         ...day,
-        temp: this.convertTemperature(this.kelvinToCelsius(day.temp))
+        temp: day.temp
       }));
       console.log(this.dailyData);
       this.isLoading = false;
     }, error => {
       this.isLoading = false;
-    })
-    
+    });
   }
 
   scrollLeft() {
@@ -134,33 +98,44 @@ constructor(private weatherserviceservice:WeatherserviceService){ }
     container.scrollBy({ left: 1000, behavior: 'smooth' });
   }
 
-  toggleTemperatureUnit() {
+  toggleTemperatureUnit(): void {
     this.isLoading = true;
     setTimeout(() => {
-      this.isCelcius = !this.isCelcius;
-      // Convert existing temperatures to the new unit
-      this.weatherData.main.temp = this.convertTemperature(this.weatherData.main.temp);
+    this.isCelsius = !this.isCelsius;
+    // Convert existing temperatures to the new unit
+    this.weatherData.main.temp = this.getDisplayedTemperature(this.weatherData.main.temp);
 
-      this.hourlyData = this.hourlyData.map(hour => ({
-        ...hour,
-        temp: this.convertTemperature(hour.temp)
-      }));
+    this.hourlyData = this.hourlyData.map(hour => ({
+      ...hour,
+      temp: this.getDisplayedTemperature(hour.temp)
+    }));
 
-      this.dailyData = this.dailyData.map(day => ({
-        ...day,
-        temp: this.convertTemperature(day.temp)
-      }));
-
-      this.isLoading = false;
-    }, 500);
+    this.dailyData = this.dailyData.map(day => ({
+      ...day,
+      temp: this.getDisplayedTemperature(day.temp)
+    }));
+    this.isLoading = false;
+  },500);
   }
 
-  convertTemperature(temp: number): number {
-    if (this.isCelcius) {
-      // Convert Kelvin to Celsius if necessary
-      return temp;
-    } else {
-      // Convert Celsius to Fahrenheit rounded to 2 decimal points
-      return parseFloat(((temp * 9 / 5) + 32).toFixed(2));
-    }
-  }}
+
+  getDisplayedTemperature(temp: number): number {
+    return this.isCelsius ? temp : this.conversionservice.celciusToFahrenheit(temp);
+  
+  }
+
+
+  saveWeatherHistory(): void {
+    const city = this.city;
+    const temperature = this.weatherData.main.temp;
+    const description = this.weatherData.weather[0].description;
+    this.weatherserviceservice.saveWeatherHistory(city, temperature, description).subscribe(
+      response => {
+        console.log('Weather history saved successfully', response);
+      },
+      error => {
+        console.error('Error saving weather history', error);
+      }
+    );
+  }
+}

@@ -90,7 +90,7 @@ body{
   
   padding: 10px;
   margin-left: 20px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.7);
   text-align: center;
  max-width: 90%;
   left: 15px;
@@ -98,6 +98,7 @@ body{
   font-size: 1.3em;
   font-weight: bold;
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 
 .weather-temp{
@@ -149,7 +150,7 @@ body{
   max-width: 100%;
   height: 190px;
   width: 92vw;
-  font-weight: bold;
+  font-weight: smaller;
 }
 
 .forecast-hour-container::-webkit-scrollbar, .daily-container::-webkit-scrollbar  {
@@ -159,10 +160,11 @@ body{
 .forecast-hour, .daily-day {
   min-width: 150px;
   margin: 0 10px;
-  background-color: rgba(240, 240, 240, 0.15);
+  background-color: rgba(240, 240, 240, 0.7);
   padding: 9px;
   border: 1px solid rgba(240, 240, 240, 0.135);
   text-align: center;
+  border-radius: 5px;
  
 
 }
@@ -174,7 +176,8 @@ body{
   max-width: 100%;
   height: 190px;
   width: 92vw;
-  font-weight: bold;
+  font-weight: smaller;
+ 
 }
 
 
