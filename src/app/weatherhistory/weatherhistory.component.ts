@@ -25,22 +25,6 @@ export class WeatherhistoryComponent implements OnInit{
       
   }
 
- searchWeather(city:string): void{
-  this.weatherserviceservice.getWeather(city).subscribe(data =>{
-    this.weatherData2 = data;
-
-
-    this.weatherserviceservice.saveWeatherHistory(city, data.main.temperature, data.weather[0].description).subscribe(
-      response => {
-        console.log('weather history saved:', response);
-        this.getWeatherHistory();
-      },
-      error =>{
-        console.log("Error saving weather history:", error);
-      }
-    );
-  });
- }
   
  getWeatherHistory():void{
   this.weatherserviceservice.getWeatherHistory().subscribe(

@@ -13,9 +13,7 @@ export class WeatherserviceService {
 apiKey = 'e081fa0e5d1faefa897dd283f78f0b3e';
 foreCastKey = '7BHY5DJ48XZFDZULEZ6VMQLKN';
 DailyKey =  '7BHY5DJ48XZFDZULEZ6VMQLKN';
-apiURL = 'http://localhost:4201/saveWeather';
-baseURL = 'http://localhost:4201/weatherHistory';
-
+apiURL = 'http://localhost:4201';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -39,12 +37,12 @@ baseURL = 'http://localhost:4201/weatherHistory';
     saveWeatherHistory(city: string, temperature: number, description: string): Observable<any>{
 
       const weatherData2 = {city, temperature, description};
-      return this.httpClient.post(`${this.apiURL}`, weatherData2);
+      return this.httpClient.post(`${this.apiURL}/saveWeather`, weatherData2);
     }
 
     // Method to retrieve weather history
     getWeatherHistory():Observable<any[]>{
-      return this.httpClient.get<any[]>(`${this.baseURL}`);
+      return this.httpClient.get<any[]>(`${this.apiURL}/weatherHistory`);
     }
 
 }

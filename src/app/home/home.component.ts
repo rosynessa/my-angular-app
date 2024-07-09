@@ -39,10 +39,24 @@ export class HomeComponent implements OnInit {
       console.log(data);
       this.weatherData.main.temp = this.kelvinToCelsius(this.weatherData.main.temp);
       this.isLoading= false;
-      this.saveWeatherHistory;
+      this.saveWeatherHistory();
     }, error => {
       this.isLoading = false;
     });
+  }
+
+  saveWeatherHistory():void{
+    const city = this.city;
+    const temperature = this.weatherData.main.temp;
+    const description = this.weatherData.weather[0].description;
+    this.weatherserviceservice.saveWeatherHistory(city, temperature, description).subscribe(
+      response =>{
+        console.log("Weather history saved successfully", response);
+      },
+      error =>{
+        console.log("Error saving history", error);
+      }
+    );
   }
 
   kelvinToCelsius(tempKelvin: number): number {
@@ -125,17 +139,4 @@ export class HomeComponent implements OnInit {
   }
 
 
-  saveWeatherHistory(): void {
-    const city = this.city;
-    const temperature = this.weatherData.main.temp;
-    const description = this.weatherData.weather[0].description;
-    this.weatherserviceservice.saveWeatherHistory(city, temperature, description).subscribe(
-      response => {
-        console.log('Weather history saved successfully', response);
-      },
-      error => {
-        console.error('Error saving weather history', error);
-      }
-    );
-  }
 }
