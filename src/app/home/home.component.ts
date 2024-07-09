@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   dailyData: any[] = [];
   isLoading: boolean = false;
   isCelsius: boolean = true;
+  iconUrl: string = '';
 
   constructor(
     private weatherserviceservice: WeatherserviceService,
@@ -38,6 +39,7 @@ export class HomeComponent implements OnInit {
       this.weatherData = data;
       console.log(data);
       this.weatherData.main.temp = this.kelvinToCelsius(this.weatherData.main.temp);
+      this.iconUrl = 'https://openweathermap.org/img/wn/' +this.weatherData.weather[0].icon +'@2x.png';
       this.isLoading= false;
       this.saveWeatherHistory();
     }, error => {

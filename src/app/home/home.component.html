@@ -27,10 +27,7 @@
         <p class="weather-temp"> {{ weatherData?.main?.temp | number:'1.0-1'}}° {{isCelsius ? 'C' : 'F'}}</p>
         
      <div class="weather-icon">
-  
-            <span class="material-icons forecast-icon sunny-icon" *ngIf="weatherData.main.temp > 23">wb_sunny</span>
-            <span class="material-icons forecast-icon" *ngIf="weatherData.main.temp < 23 ">wb_cloudy</span>
-
+  <p><img src="{{iconURL}}" alt="weather-icon"></p>
         </div>
         <p class="weather-humidity">Humidity: {{ weatherData.main.humidity }}%</p>
         <p class = "weather-description">Weather: {{weatherData.weather[0].description}}</p>
