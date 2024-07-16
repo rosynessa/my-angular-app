@@ -45,4 +45,43 @@ apiURL = 'http://localhost:4201';
       return this.httpClient.get<any[]>(`${this.apiURL}/weatherHistory`);
     }
 
-}
+    public getIcon(condition: string): string {
+      switch (condition) {
+        case 'clear-day':
+        case 'clear-night':
+          return 'wb_sunny';
+        case 'rain':
+          return 'umbrella';
+        case 'snow':
+          return 'ac_unit';
+        case 'sleet':
+          return 'grain';
+        case 'wind':
+          return 'toys';
+        case 'fog':
+          return 'blur_on';
+        case 'cloudy':
+          return 'wb_cloudy';
+        case 'partly-cloudy-day':
+        case 'partly-cloudy-night':
+          return 'wb_cloudy';
+        default:
+          return 'wb_sunny';
+      }
+    }
+
+
+    addFavoriteCity(userId: number, city: string): Observable<any> {
+      return this.httpClient.post(`${this.apiURL}/addFavoriteCity`, { userId, city });
+    }
+  
+    getFavoriteCities(userId: number): Observable<any> {
+      return this.httpClient.get(`${this.apiURL}/favoriteCities/${userId}`);
+    }
+
+    deleteFavoriteCity(id: number): Observable<any> {
+      return this.httpClient.delete(`${this.apiURL}/favoriteCities/${id}`);
+    }
+  }
+    
+  

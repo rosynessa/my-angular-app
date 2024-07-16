@@ -22,9 +22,8 @@ body{
   align-items: center;
   justify-content: flex-start;
   padding-top: 10px;
- 
-  
 }
+
 
 .search-section {
   text-align: center;
@@ -89,24 +88,24 @@ body{
  
   
   padding: 10px;
-  margin-left: 20px;
-  background: rgba(255, 255, 255, 0.7);
+  margin-left: 30px;
+  background: #3b4a5a;
   text-align: center;
  max-width: 90%;
   left: 15px;
   margin-top: 50px;
   font-size: 1.3em;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 70px;
   border-radius: 5px;
 }
 
 .weather-temp{
-  color: #3b4a5a;
+  color: white;
   font-weight: bold;
   font-size: 2em;
 }
-.weather-humidity{
+.weather-humidity, .wind-speed, .pressure {
   font-size: 0.65em;
 
 }
@@ -148,7 +147,7 @@ body{
   overflow-x: auto;
   scroll-behavior: smooth;
   max-width: 100%;
-  height: 190px;
+  height: 200px;
   width: 92vw;
   font-weight: smaller;
 }
@@ -158,13 +157,14 @@ body{
 }
 
 .forecast-hour, .daily-day {
-  min-width: 150px;
-  margin: 0 10px;
+  min-width: 250px;
+  margin: 0 30px;
   background-color: rgba(240, 240, 240, 0.7);
   padding: 9px;
   border: 1px solid rgba(240, 240, 240, 0.135);
   text-align: center;
   border-radius: 5px;
+  margin-bottom: 10px;
  
 
 }

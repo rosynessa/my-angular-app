@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   isLoading: boolean = false;
   isCelsius: boolean = true;
   iconUrl: string = '';
+  
 
   constructor(
     private weatherserviceservice: WeatherserviceService,
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit {
     this.getWeather();
     this.getForecastWeather();
     this.getDailyWeather();
+    
   }
 
   getWeather(): void {
@@ -94,6 +96,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  
   scrollLeft() {
     const container = document.querySelector('.forecast-hour-container') as HTMLElement;
     container.scrollBy({ left: -1000, behavior: 'smooth' });
@@ -140,5 +143,9 @@ export class HomeComponent implements OnInit {
   
   }
 
+  
+  getIcon(condition: string): string {
+    return this.weatherserviceservice.getIcon(condition);
+  }
 
 }

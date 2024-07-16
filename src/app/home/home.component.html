@@ -10,11 +10,12 @@
             ( <button type="button" (click) ="toggleTemperatureUnit()">
               Switch to {{ isCelsius ? 'Fahrenheit' : 'Celsius' }}
             </button>)
-         
           </form>
+
+          
         </div>
         <div>
-        <a [routerLink]="['/history']">History</a>
+        <a [routerLink]="['/history']">Favourite Cities</a>
       </div>
 
         <div *ngIf="isLoading" class="loading-indicator">
@@ -27,10 +28,12 @@
         <p class="weather-temp"> {{ weatherData?.main?.temp | number:'1.0-1'}}° {{isCelsius ? 'C' : 'F'}}</p>
         
      <div class="weather-icon">
-  <p><img src="{{iconURL}}" alt="weather-icon"></p>
+  <p><img src="{{iconUrl}}" alt="weather-icon"></p>
         </div>
         <p class="weather-humidity">Humidity: {{ weatherData.main.humidity }}%</p>
         <p class = "weather-description">Weather: {{weatherData.weather[0].description}}</p>
+        <p class = "wind-speed">wind-speed: {{weatherData?.wind.speed }}</p>
+        <p class = "pressure">pressure: {{weatherData?.main.pressure }}</p>
     </div>
 
         
@@ -40,19 +43,18 @@
     <button id="previous-button" class="prev-button" (click)="scrollLeft2()"><</button>
   <div class="daily-container">
   <div class = "daily-day"  *ngFor="let day of dailyData">
-    <p>Date: {{ day.datetime }}</p>
+   
     <div class="daily-temp">
     <p> {{ day?.temp| number:'1.0-1'}}° {{isCelsius ? 'C': 'F'}}</p>
-    <p>Humidity: {{day?.humidity}}</p>
     <p>Wind Speed: {{day?.windspeed}}</p>
     <p>UVI Index: {{day?.uvindex}}</p>
+    <p>Humidity: {{day?.humidity}}</p>
     <p>Conditions: {{day?.conditions}}</p>
-    <p>{{day.icon}}</p>
+    <p>Wind Speed: {{day?.windspeed}}</p>
+    <p>Snow Depth: {{day?.snowdepth}}</p>
+
     
- 
-    <span class="material-icons forecast-icon sunny-icon" *ngIf=" day.tempmax > 20" >wb_sunny</span>
-            <span class="material-icons forecast-icon" *ngIf="day.tempmax < 20 ">wb_cloudy</span>
-  
+    <span class="material-icons">{{ getIcon(day.icon) }}</span>
 
   </div>
   </div>
@@ -74,12 +76,11 @@
         <p>Wind Speed: {{hour.windspeed}}</p>
         <p>UVI Index: {{hour.uvindex}}</p>
         <p>Conditions: {{hour.conditions}}</p>
+        <p>Wind Speed: {{hour?.windspeed}}</p>
+    <p>Snow Depth: {{hour?.snowdepth}}</p>
         
         
-        <span class="material-icons forecast-icon" *ngIf="hour.datetime < 6 && hour.datetime >= 18">nights_stay</span>
-      <span class="material-icons forecast-icon sunny-icon" *ngIf=" hour.temp > 20" >wb_sunny</span>
-            <span class="material-icons forecast-icon" *ngIf="hour.temp < 20 ">wb_cloudy</span>
-
+        <span class="material-icons">{{ getIcon(hour.icon) }}</span>
            
           </div>
         </div>
@@ -88,8 +89,9 @@
     
 
     </div>
-   
-   
+    
+    
+    
 
 
 

@@ -1,10 +1,13 @@
 
+<body>
 <div>
-    <h2>Weather History</h2>
-    <ul>
-      <li *ngFor="let entry of history">
-        {{ entry.city }} - {{ entry.temperature }}°C - {{ entry.description }} - {{ entry.searchTime | date:'short' }}
-      </li>
-    </ul>
-  </div>
-  
+  <h2>Favorite Cities</h2>
+  <input [(ngModel)]="newFavoriteCity" placeholder="Enter city name" />
+  <button (click)="addFavoriteCity()">Add Favorite City</button>
+
+  <ul>
+    <li *ngFor="let city of favoriteCities">{{ city.city }}
+      <button (click)="deleteCity(city.id)">Delete</button>
+    </li>
+  </ul>
+</div>
