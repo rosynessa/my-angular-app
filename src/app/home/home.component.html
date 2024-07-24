@@ -1,97 +1,76 @@
 
-<body>
-
-    <div class="weather-all">
-    <section class="container1">
-        <div class="row">
-          <form class="col" id="search-form">
-           <input type="text" name="cityName" placeholder="Enter a city name" [(ngModel)]="city">
-            <button type="button" (click)="getWeather()" (click) ="getForecastWeather()" (click)="getDailyWeather()">Search</button>
-            ( <button type="button" (click) ="toggleTemperatureUnit()">
-              Switch to {{ isCelsius ? 'Fahrenheit' : 'Celsius' }}
-            </button>)
-          </form>
-
-          
-        </div>
-        <div>
-        <a [routerLink]="['/history']">Favourite Cities</a>
+<div class="weather-all">
+  <section class="container1">
+    <div class="row">
+      <form class="col" id="search-form"></form>
+      <div class="search-container">
+        <button type="button" (click)="toggleTemperatureUnit()" class="toggle">
+           {{ isCelsius ? 'F°' : 'C°' }}
+        </button>
+        <input type="text" name="cityName" class="search-input" placeholder="Enter a city name" [(ngModel)]="city">
+        <button type="button" (click)="getWeather(); getForecastWeather(); getDailyWeather()" class="search-button">Search</button>
+      </div>
+      <div>
+        <button type="button" (click)="addFavoriteCity()" class="favorite-button">Add Favorite City</button>
       </div>
 
-        <div *ngIf="isLoading" class="loading-indicator">
-          Loading...
-        </div>
+      <div class="actions-container">
+        <a [routerLink]="['/history']" class="history-link">Favourite Cities</a>
+      </div>
 
-    <div *ngIf = "!isLoading">
-    <div class="weather-section" *ngIf="weatherData" >
-        <h2 class="weather-city">{{ weatherData.name }}</h2>
-        <p class="weather-temp"> {{ weatherData?.main?.temp | number:'1.0-1'}}° {{isCelsius ? 'C' : 'F'}}</p>
-        
-     <div class="weather-icon">
-  <p><img src="{{iconUrl}}" alt="weather-icon"></p>
-        </div>
-        <p class="weather-humidity">Humidity: {{ weatherData.main.humidity }}%</p>
-        <p class = "weather-description">Weather: {{weatherData.weather[0].description}}</p>
-        <p class = "wind-speed">wind-speed: {{weatherData?.wind.speed }}</p>
-        <p class = "pressure">pressure: {{weatherData?.main.pressure }}</p>
-    </div>
+      <div *ngIf="isLoading" class="loading-indicator">
+        Loading...
+      </div>
 
-        
-   <section class="daily-section" >
-  <h2 class="daily-title">Daily Forecast </h2>
-  <div class="carousel-view">
-    <button id="previous-button" class="prev-button" (click)="scrollLeft2()"><</button>
-  <div class="daily-container">
-  <div class = "daily-day"  *ngFor="let day of dailyData">
-   
-    <div class="daily-temp">
-    <p> {{ day?.temp| number:'1.0-1'}}° {{isCelsius ? 'C': 'F'}}</p>
-    <p>Wind Speed: {{day?.windspeed}}</p>
-    <p>UVI Index: {{day?.uvindex}}</p>
-    <p>Humidity: {{day?.humidity}}</p>
-    <p>Conditions: {{day?.conditions}}</p>
-    <p>Wind Speed: {{day?.windspeed}}</p>
-    <p>Snow Depth: {{day?.snowdepth}}</p>
-
-    
-    <span class="material-icons">{{ getIcon(day.icon) }}</span>
-
-  </div>
-  </div>
-  </div>
-  <button id="next-button2" class="next-button" (click) = "scrollRight2()">></button>
-</div>
-</section>
-
-    <section class="forecast-section" *ngIf="hourlyData && hourlyData.length">
-    <h2 class="forecast-title">Hourly Forecast</h2>
-    <div class="carousel-view">
-    <button id="prev-button" class="prev-button" (click)="scrollLeft()"><</button>
-    <div class="forecast-hour-container">
-    <div class="forecast-hour" *ngFor="let hour of hourlyData">
-      <p>{{ hour.datetime }}</p>
-      <div class="forecast-temp">
-        <p>{{ hour.temp | number:'1.0-1' }}° {{isCelsius ? 'C' : 'F'}}</p>
-        <p>Humidity: {{hour.humidity}}</p>
-        <p>Wind Speed: {{hour.windspeed}}</p>
-        <p>UVI Index: {{hour.uvindex}}</p>
-        <p>Conditions: {{hour.conditions}}</p>
-        <p>Wind Speed: {{hour?.windspeed}}</p>
-    <p>Snow Depth: {{hour?.snowdepth}}</p>
-        
-        
-        <span class="material-icons">{{ getIcon(hour.icon) }}</span>
-           
+      <div *ngIf="!isLoading">
+        <div class="weather-section" *ngIf="weatherData">
+          <h2 class="weather-city">{{ weatherData.name }}</h2>
+          <div class="weather-icon">
+            <p><img src="{{ iconUrl }}" alt="weather-icon"></p>
           </div>
+          <p class="weather-temp">{{ weatherData?.main?.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
+          <p class="weather-description">Weather: {{ weatherData.weather[0].description }}</p>
         </div>
+
+        <section class="daily-section">
+          <h2 class="daily-title">Daily Forecast</h2>
+          <div class="carousel-view">
+            <button id="previous-button" class="prev-button" (click)="scrollLeft2()"><</button>
+            <div class="daily-container">
+              <div class="daily-day" *ngFor="let day of dailyData">
+                <div class="daily-temp">
+                  <span class="material-icons">{{ getIcon(day.icon) }}</span>
+                  <p>{{ day?.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
+                  <p>Humidity: {{ day?.humidity }}</p>
+                  <p>Conditions: {{ day?.conditions }}</p>
+                </div>
+              </div>
+            </div>
+            <button id="next-button2" class="next-button" (click)="scrollRight2()">></button>
+          </div>
+        </section>
+
+        <section class="forecast-section" *ngIf="hourlyData && hourlyData.length">
+          <h2 class="forecast-title">Hourly Forecast</h2>
+          <div class="carousel-view">
+            <button id="prev-button" class="prev-button" (click)="scrollLeft()"><</button>
+            <div class="forecast-hour-container">
+              <div class="forecast-hour" *ngFor="let hour of hourlyData">
+                <p>{{ hour.datetime }}</p>
+                <div class="forecast-temp">
+                  <span class="material-icons">{{ getIcon(hour.icon) }}</span>
+                  <p>{{ hour.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
+                  <p>{{ hour?.description }}</p>
+                  <p>Humidity: {{ hour.humidity }}</p>
+                  <p>Conditions: {{ hour.conditions }}</p>
+                </div>
+              </div>
+            </div>
+            <button id="next-button" class="next-button" (click)="scrollRight()">></button>
+          </div>
+        </section>
+      </div>
     </div>
-    <button id="next-button" class="next-button" (click) = "scrollRight()">></button>
-    
-
-    </div>
-    
-    
-    
-
-
+  </section>
+</div>
 

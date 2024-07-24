@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 // import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { WeatherhistoryComponent } from './weatherhistory/weatherhistory.component';
+import { CitydetailsComponent } from './citydetails/citydetails.component';
 
 export const routes: Routes = [
 
@@ -20,10 +21,14 @@ export const routes: Routes = [
 {
     path: 'history',
     component:WeatherhistoryComponent,
-}
+},
 
-
-
+{
+    path: 'city/:city',
+    component:CitydetailsComponent,
+},
+{ path: '', redirectTo: '/home', pathMatch: 'full' },
+{ path: '**', redirectTo: '/home' }
 
 
 

@@ -1,13 +1,22 @@
 
 <body>
-<div>
-  <h2>Favorite Cities</h2>
-  <input [(ngModel)]="newFavoriteCity" placeholder="Enter city name" />
-  <button (click)="addFavoriteCity()">Add Favorite City</button>
 
-  <ul>
-    <li *ngFor="let city of favoriteCities">{{ city.city }}
-      <button (click)="deleteCity(city.id)">Delete</button>
-    </li>
-  </ul>
-</div>
+  <div  class="home-link-container">
+    <a [routerLink]="['/home']" class="home-link">Home</a>
+  </div>
+  <div class="insert">
+    <section class="add-city-section">
+      <input [(ngModel)]="newFavoriteCity" placeholder="Enter city name" />
+      <button (click)="addFavoriteCity()">Add Favorite City</button>
+    </section>
+
+    <div class="favorite-list">
+      <ul>
+        <li *ngFor="let city of favoriteCities">
+          <a [routerLink]="['/city', city.city]">{{ city.city }}</a>
+          <button class="remove" (click)="deleteCity(city.id)">X</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>

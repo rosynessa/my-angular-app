@@ -1,57 +1,101 @@
 
-div {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+/* Container */
+/* Container */
+body{
+height: 100%;
   
-  /* Header */
-  h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-  }
+  color: #00203F;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.insert {
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  margin-bottom: 40px;
+  margin-top: 30px;
+}
+
+
+/* Input field */
+input {
+  width: 300px; /* Adjust width as needed */
+  padding: 10px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  box-sizing: border-box;
+}
+
+/* Button */
+button {
+  padding: 5px 30px;
+
+  background-color: #2E8BC0;
+  border: none;
+  border-radius: 50px;
+  color: #00203F;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px; /* Add some spacing between buttons */
   
-  /* Input field */
-  input {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* List */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Makes the list items align horizontally */
+  flex-wrap: wrap; /* Allows the items to wrap to the next line if they exceed the container width */
+}
+
+li {
+  display: flex;
+  justify-content: space-between; /* Space between city name and delete button */
+  align-items: center;
+  width: 300px;
+  height: 300px; /* Adjust width as needed */
+  background-color:#145DA0;
+  margin: 60px; /* Space between list items horizontally */
+  margin-bottom: 10px; /* Space between rows if wrapping occurs */
+  padding: 10px;
+  border-radius: 10px;
+  color:#00203F;
+}
+
+.remove{
+
+  color:#00203F;
   
-  /* Button */
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* List */
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    background-color: #e0e0e0;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 4px;
-    color: #333;
-  }
-  
+}
+
+.home-link-container, .cityinfo-container{
+  border-radius: 50px;
+}
+
+.home-link, .cityinfo-link {
+  text-decoration: none; /* Remove underline */
+  color: #00203F; /* Text color */
+  background-color: #2E8BC0; /* Background color */
+  padding: 10px 20px; /* Padding */
+  border-radius: 50px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  display: inline-block; /* Ensure padding and background color apply correctly */
+  margin-bottom: 20px; /* Space below the link */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.home-link:hover, .cityinfo-link:hover
+ {
+  background-color: #004494; /* Darker background color on hover */
+}
+
+

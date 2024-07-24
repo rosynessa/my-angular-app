@@ -4,6 +4,9 @@ import { RouterModule } from '@angular/router';
 import { WeatherserviceService } from '../weatherservice.service';
 import { FormsModule } from '@angular/forms';
 import { ConversionService } from '../conversion.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CitydetailsComponent } from '../citydetails/citydetails.component';
 
 @Component({
   selector: 'app-home',
@@ -21,11 +24,13 @@ export class HomeComponent implements OnInit {
   isLoading: boolean = false;
   isCelsius: boolean = true;
   iconUrl: string = '';
-  
+  userId: number = 1;
+  favoriteCities: Set<string> = new Set();
 
   constructor(
     private weatherserviceservice: WeatherserviceService,
-    private conversionservice: ConversionService
+    private conversionservice: ConversionService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -146,6 +151,24 @@ export class HomeComponent implements OnInit {
   
   getIcon(condition: string): string {
     return this.weatherserviceservice.getIcon(condition);
+  }
+
+  addFavoriteCity(): void {
+    if (this.favoriteCities.has(this.city)) {
+    
+      return;
+    }
+
+    this.weatherserviceservice.addFavoriteCity(1, this.city).subscribe(
+      (response) => {
+        console.log('City added to favorites:', response);
+        this.favoriteCities.add(this.city);
+        this.city = ''; // Clear the input after adding
+      },
+      (error) => {
+        console.error('Error adding city to favorites:', error);
+      }
+    );
   }
 
 }

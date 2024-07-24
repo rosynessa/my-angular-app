@@ -1,0 +1,24 @@
+
+<body>
+  <div class="favcity">
+    <a [routerLink]="['/history']" class="favcity-link">Favorite City</a>
+  </div>
+<div city-details-container>
+<div *ngIf="isLoading">
+    Loading weather data...
+  </div>
+  <div *ngIf="!isLoading && weatherData">
+    <div class="weather-section">
+      <h2 class="weather-city">{{ weatherData.name }}</h2>
+      <div class="weather-icon">
+        <p><img [src]="iconUrl" alt="weather-icon"></p>
+      </div>
+      <p class="weather-temp">{{ weatherData.main.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
+      <p class="weather-description">Weather: {{ weatherData.weather[0].description }}</p>
+    </div>
+    <button (click)="toggleTemperatureUnit()" class="toggle-button">Switch to {{ isCelsius ? 'Fahrenheit' : 'Celsius' }}</button>
+  </div>
+  <div *ngIf="!isLoading && !weatherData">
+    No weather data available.
+  </div>
+  

@@ -7,6 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { WeatherhistoryComponent } from './weatherhistory/weatherhistory.component';
+import { CitydetailsComponent } from './citydetails/citydetails.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 // import { HeaderComponent } from './header/header.component';
 
 
@@ -20,10 +23,11 @@ import { WeatherhistoryComponent } from './weatherhistory/weatherhistory.compone
   HomeComponent,
   FormsModule,
   WeatherhistoryComponent,
-  
-
-  // HeaderComponent,
+  CitydetailsComponent,
+  MatDialogModule,
+  MatButtonModule,
   RouterLinkActive,
+
   
   
 

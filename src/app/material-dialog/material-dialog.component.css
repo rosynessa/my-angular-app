@@ -1,0 +1,42 @@
+/* material-dialog.component.css */
+.popup-container{
+    background-color: white;
+    height: 200px;
+}
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #2E8BC0; /* Primary color */
+    text-align: center;
+   
+
+  }
+  
+  div[mat-dialog-content] {
+    font-size: 16px;
+    color: white; /* Dark text color */
+    margin-bottom: 24px;
+    text-align: center;
+  
+  }
+  
+  div[mat-dialog-actions] {
+    display: flex;
+    justify-content: center;
+   
+
+  }
+  
+  button[mat-button] {
+    background-color: #2E8BC0; /* Primary color */
+    color: white;
+    border-radius: 4px;
+    padding: 8px 16px;
+    text-transform: uppercase;
+  }
+  
+  button[mat-button]:hover {
+    background-color: #303f9f; /* Darker primary color */
+  }
+  
