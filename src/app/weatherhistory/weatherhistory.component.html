@@ -12,11 +12,14 @@
 
     <div class="favorite-list">
       <ul>
-        <li *ngFor="let city of favoriteCities">
-          <a [routerLink]="['/city', city.city]">{{ city.city }}</a>
+        <li *ngFor="let city of favoriteCities" >
+          <div class="city-container">
+ 
+         <div class="city-info">
+         {{city.city}}
+         </div>
+         <div class="action-buttons">
           <button class="remove" (click)="deleteCity(city.id)">X</button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</body>
+         </div>
+          <a [routerLink]="['/city', city.city]" class="city-link">></a>
+        
