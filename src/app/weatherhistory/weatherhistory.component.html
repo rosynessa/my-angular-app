@@ -1,25 +1,29 @@
 
 <body>
 
-  <div  class="home-link-container">
-    <a [routerLink]="['/home']" class="home-link">Home</a>
-  </div>
-  <div class="insert">
-    <section class="add-city-section">
-      <input [(ngModel)]="newFavoriteCity" placeholder="Enter city name" />
-      <button (click)="addFavoriteCity()">Add Favorite City</button>
-    </section>
+  <nav class="nav-bar">
+        <a [routerLink]="['/home']">Home</a>
+  </nav>
 
-    <div class="favorite-list">
-      <ul>
-        <li *ngFor="let city of favoriteCities" >
-          <div class="city-container">
+
+  <div class="searching-container">
  
+      <input [(ngModel)]="newFavoriteCity" placeholder="Enter city name" class="input-bar" />
+      
+      <button (click)="addFavoriteCity()" class="input-button">Add Favorite City</button>
+  </div>
+
+  <div class="insert">
+      <ul>
+        <li *ngFor="let city of favoriteCities" [ngStyle]="{'background-image': 'url(' + getRandomBackground() + ')'}" >
+          <div class="city-container">
          <div class="city-info">
-         {{city.city}}
+
          </div>
          <div class="action-buttons">
-          <button class="remove" (click)="deleteCity(city.id)">X</button>
+          <button class="remove" (click)="deleteCity(city.id)">
+          <img class="remove-bin" src="assets/recycle.png" alt="bin"/>
+          </button>
          </div>
-          <a [routerLink]="['/city', city.city]" class="city-link">></a>
+          <a [routerLink]="['/city', city.city]" class="city-link">{{city.city}}</a>
         

@@ -28,6 +28,17 @@ export class WeatherhistoryComponent implements OnInit{
   favoriteCities: any[] = [];
   newFavoriteCity: string = '';
   errorMessage: string = '';
+  backgroundImages:string[] = [
+   
+    'assets/desert.jpeg',
+    'assets/night.jpeg',
+    'assets/Landscape.jpeg',
+    'assets/mantel.jpeg',
+    'assets/mountain.jpeg',
+    'assets/vector.jpeg',
+    'assets/Flat.jpeg'
+
+  ]
 
   constructor(
     private weatherserviceservice: WeatherserviceService,
@@ -104,4 +115,10 @@ export class WeatherhistoryComponent implements OnInit{
         }
       });
   }
+
+  getRandomBackground(): string {
+    const randomIndex = Math.floor(Math.random() * this.backgroundImages.length);
+    return this.backgroundImages[randomIndex];
+  }
+
 }

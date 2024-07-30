@@ -1,8 +1,4 @@
 
-/* Container */
-/* Container */
-/* Body styling */
-/* Body styling */
 body {
   height: 100%;
   color: #00203F;
@@ -10,8 +6,51 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* Insert section styling */
-.insert {
+.nav-bar{
+  background-color: #145DA0;
+  margin: 0%;
+  padding: 0%;
+  height: 70px;
+  width: 100%;
+  display: flex;
+ overflow: hidden;
+ align-items: center;
+ box-sizing: border-box;
+ padding: 0 20px;
+
+}
+
+.nav-bar a{
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.nav-bar a:hover{
+  background-color:#00203F;
+  color: white;
+  height: 100%;
+}
+
+.nav-bar a:active{
+  color: black;
+}
+
+.searching-container{
+
+  display: flex;
+  align-items: center; /* Vertically align items */
+  margin: 20px auto; /* Center container horizontally */
+  max-width: 600px; /* Restrict maximum width */
+  padding: 0 10px; /* Padding for responsiveness */
+  position: relative;
+}
+
+.insert{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -20,36 +59,30 @@ body {
   margin-top: 5px;
 }
 
-/* Input field styling */
-input {
-  width: 300px; /* Adjust width as needed */
+.input-bar {
+  flex: 1; /* Allow the input to grow and fill available space */
   padding: 10px;
-  margin-right: 4px;
-  margin-bottom: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 50px;
-  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
 /* Button styling */
-button {
-  padding: 5px 30px;
-  background-color: #2E8BC0;
-  border: none;
-  border-radius: 50px;
+.input-button {
+  background-color: #145DA0;
   color: white;
-  font-weight: 1.5em;
-  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-left: 7px; /* Space between input field and button */
   cursor: pointer;
-  margin-bottom: 10px; /* Add some spacing between buttons */
+  font-size: 16px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.input-button:hover {
+  background-color: #00203F;
 }
 
-/* List styling */
 ul {
   list-style: none;
   padding: 0;
@@ -58,101 +91,55 @@ ul {
   flex-wrap: wrap; /* Allows the items to wrap to the next line if they exceed the container width */
 }
 
-/* List item styling */
-li {
+li{
   display: flex;
   align-items: center;
-  width: 300px;
+  width: 500px;
   height: 100px; /* Adjust height as needed */
-  background-color: #2E8BC0;
-  margin: 30px; /* Space between rows */
+  background-size: cover;
+  background-position: center;
+  margin: 50px; /* Space between rows */
   padding: 5px;
   border-radius: 10px;
   color: #00203F;
   position: relative; /* Relative positioning to position child elements absolutely */
+  
 }
 
-/* City container styling */
-.city-container {
-  position: relative; /* Positioning context for action buttons */
+.city-link{
+  font-size: 30px;
+  color: white;
+  text-decoration: none;
+}
+
+.city-link:hover{
+  color: #00203F;
+}
+
+.action-buttons{
+  position: absolute; /* Absolute positioning for precise placement */
+  top: 10px; /* Distance from the top edge of city-container */
+  right: 10px; /* Distance from the right edge of city-container */
   display: flex;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  justify-content: center;
 }
 
-/* City info styling */
-.city-info {
-  flex-grow: 1; /* Takes up available space */
-  font-weight: bold;
-  color: white;
-  font-size: 1.2em;
-  padding-left: 40px; /* Space for the action buttons */
-}
-
-/* Action buttons container */
-.action-buttons {
-  position: absolute; /* Absolute positioning within city-container */
-  top: 0; /* Align to the top */
-  right: 0; /* Align to the right */
-  display: flex;
-  flex-direction: column; /* Stack buttons vertically */
-  align-items: center; /* Center align buttons horizontally */
-  margin-right: 10px; /* Space from the right edge */
-}
-
-/* Remove button styling */
 .remove {
-  background-color: #FF4D4D; /* Red background */
-  color: white; /* White text color */
-  border: none; /* Remove default button border */
-  border-radius: 10%; /* Rounded button */
-  width: 30px; /* Fixed width */
-  height: 30px; /* Fixed height */
-  display: flex; /* Use flexbox for centering content */
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
-  font-size: 18px; /* Font size */
-  cursor: pointer; /* Pointer cursor on hover */
-  margin-bottom: 10px; /* Space between remove button and arrow icon */
-  margin-right: 0px;
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
 }
 
-.remove:hover {
-  background-color: #CC0000; /* Darker red on hover */
-  transform: scale(1.1); /* Slightly enlarge on hover */
+.remove-bin {
+  width: 24px; /* Adjust size as needed */
+  height: 24px; /* Adjust size as needed */
+  vertical-align: middle;
+  
 }
 
-/* City link styling (arrow) */
-.city-link {
-  font-size: 30px; /* Font size for the arrow */
-  color: white; /* Arrow color */
-  text-decoration: none; /* Remove underline */
-}
-
-/* City link hover effect */
-.city-link:hover {
-  color: #004494; /* Darker color on hover */
-}
-
-.home-link-container, .cityinfo-container{
-  border-radius: 50px;
-}
-
-.home-link, .cityinfo-link {
-  text-decoration: none; /* Remove underline */
-  color: #00203F; /* Text color */
-  background-color: #2E8BC0; /* Background color */
-  padding: 10px 20px; /* Padding */
-  border-radius: 50px; /* Rounded corners */
-  font-size: 16px; /* Font size */
-  display: inline-block; /* Ensure padding and background color apply correctly */
-  margin-bottom: 20px; /* Space below the link */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-}
-
-.home-link:hover, .cityinfo-link:hover
- {
-  background-color: #004494; /* Darker background color on hover */
+.remove-bin:hover{
+  color: white;
 }
