@@ -1,35 +1,24 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WeatherserviceService } from '../weatherservice.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CitydetailsComponent } from '../citydetails/citydetails.component';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MaterialDialogComponent } from '../material-dialog/material-dialog.component';
-
 
 @Component({
   selector: 'app-weatherhistory',
   standalone: true,
-  imports: [CommonModule, 
-    FormsModule,
-    RouterModule,
-    CitydetailsComponent,
-    MatDialogModule,
-    MatButtonModule
-
-  ],
+  imports: [CommonModule, FormsModule, RouterModule, CitydetailsComponent, MatDialogModule, MatButtonModule],
   templateUrl: './weatherhistory.component.html',
-  styleUrl: './weatherhistory.component.css'
+  styleUrls: ['./weatherhistory.component.css']
 })
-export class WeatherhistoryComponent implements OnInit{
-
+export class WeatherhistoryComponent implements OnInit {
   favoriteCities: any[] = [];
   newFavoriteCity: string = '';
-  errorMessage: string = '';
-  backgroundImages:string[] = [
-   
+  backgroundImages: string[] = [
     'assets/desert.jpeg',
     'assets/night.jpeg',
     'assets/Landscape.jpeg',
@@ -37,27 +26,35 @@ export class WeatherhistoryComponent implements OnInit{
     'assets/mountain.jpeg',
     'assets/vector.jpeg',
     'assets/Flat.jpeg'
+  ];
 
+  mainImage: string[]=[
+    'assets/download.jpeg'
   ]
+
 
   constructor(
     private weatherserviceservice: WeatherserviceService,
-    public Dialog:MatDialog
-  ){}
+    public Dialog: MatDialog
+  ) {}
 
-  openDialog(title:string, message: string): void {
-    const dialogRef = this.Dialog.open(MaterialDialogComponent, {
-      width: '400px',
-      data: {title, message}
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
-  }
   ngOnInit(): void {
     this.loadFavoriteCities();
-      
+  }
+
+  openDialog(title: string, message: string, confirmation: boolean = false): void {
+    const dialogRef = this.Dialog.open(MaterialDialogComponent, {
+      width: '400px',
+      data: { title, message, confirmation }
+    });
+
+    console.log('Dialog data:', { title, message, confirmation });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Handle the confirmation result here if needed
+        // Result will be true if confirmed
+      }
+    });
   }
 
   addFavoriteCity(): void {
@@ -101,24 +98,33 @@ export class WeatherhistoryComponent implements OnInit{
         }
       });
   }
-  
+
   deleteCity(id: number): void {
-    this.weatherserviceservice.deleteFavoriteCity(id)
-      .subscribe({
-        next: () => {
-          this.loadFavoriteCities();
-          this.openDialog('Success', 'City removed from favorites.');
-        },
-        error: err => {
-          console.error('Error deleting favorite city', err);
-          this.openDialog('Error', 'Error removing city. Please try again.');
-        }
-      });
+    const dialogRef = this.Dialog.open(MaterialDialogComponent, {
+      width: '400px',
+      data: { title: 'Confirm Deletion', message: 'Are you sure you want to delete this city?', confirmation: true }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // User confirmed the deletion
+        this.weatherserviceservice.deleteFavoriteCity(id)
+          .subscribe({
+            next: () => {
+              this.loadFavoriteCities();
+              this.openDialog('Success', 'City removed from favorites.');
+            },
+            error: err => {
+              console.error('Error deleting favorite city', err);
+              this.openDialog('Error', 'Error removing city. Please try again.');
+            }
+          });
+      }
+    });
   }
 
   getRandomBackground(): string {
     const randomIndex = Math.floor(Math.random() * this.backgroundImages.length);
     return this.backgroundImages[randomIndex];
   }
-
 }

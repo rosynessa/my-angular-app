@@ -4,10 +4,11 @@ import { WeatherserviceService } from '../weatherservice.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-citydetails',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,],
   templateUrl: './citydetails.component.html',
   styleUrl: './citydetails.component.css'
 })

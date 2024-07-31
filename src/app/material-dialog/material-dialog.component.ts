@@ -12,8 +12,16 @@ export class MaterialDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<MaterialDialogComponent>,  @Inject(MAT_DIALOG_DATA) public data: { title: string, message: string }) {}
 
-  close(): void {
-    this.dialogRef.close();
+  onConfirm(): void {
+    this.dialogRef.close(true);
+  }
+
+  onCancel(): void {
+    this.dialogRef.close(false);
+  }
+
+  onYes(): void {
+    this.dialogRef.close(true);
   }
 
 

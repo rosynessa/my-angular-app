@@ -26,6 +26,7 @@ export const routes: Routes = [
 {
     path: 'city/:city',
     component:CitydetailsComponent,
+    
 },
 { path: '', redirectTo: '/home', pathMatch: 'full' },
 { path: '**', redirectTo: '/home' }

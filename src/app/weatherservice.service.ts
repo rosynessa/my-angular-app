@@ -41,7 +41,7 @@ apiURL = 'http://localhost:4201';
     }
 
     // Method to retrieve weather history
-    getWeatherHistory():Observable<any[]>{
+    getWeatherHistory(city: string):Observable<any[]>{
       return this.httpClient.get<any[]>(`${this.apiURL}/weatherHistory`);
     }
 

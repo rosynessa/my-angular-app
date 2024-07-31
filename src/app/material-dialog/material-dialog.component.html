@@ -1,8 +1,11 @@
 <div class="popup-container">
-<h1 mat-dialog-title>{{ data.title }}</h1>
-<div mat-dialog-content>
-  <p>{{ data.message }}</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="close()">OK</button>
+  <h1 mat-dialog-title>{{ data.title }}</h1>
+  <div mat-dialog-content>
+    <p>{{ data.message }}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onConfirm()" >Yes</button>
+    <button mat-button (click)="onCancel()">No</button>
+    <button mat-button (click)="onYes()"  >OK</button>
+  </div>
 </div>

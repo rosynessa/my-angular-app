@@ -1,23 +1,30 @@
+<div class = "navigation-bar">
+  <a [routerLink]="['/history']" class="history-link">Favourite Cities</a>
+</div>
 
 <div class="weather-all">
+
   <section class="container1">
+    
     <div class="row">
       <form class="col" id="search-form"></form>
-      <div class="search-container">
+
+      <div class="top-buttons">
         <button type="button" (click)="toggleTemperatureUnit()" class="toggle">
-           {{ isCelsius ? 'F°' : 'C°' }}
-        </button>
+          {{ isCelsius ? 'Fahrenheit°' : 'Celcius°' }}
+       </button>
+      
+          <button type="button" (click)="addFavoriteCity()" class="favorite-button">Add Favorite City</button>
+        </div>
+
+
+      <div class="search-container">
         <input type="text" name="cityName" class="search-input" placeholder="Enter a city name" [(ngModel)]="city">
         <button type="button" (click)="getWeather(); getForecastWeather(); getDailyWeather()" class="search-button">Search</button>
       </div>
-      <div>
-        <button type="button" (click)="addFavoriteCity()" class="favorite-button">Add Favorite City</button>
-      </div>
+      
 
-      <div class="actions-container">
-        <a [routerLink]="['/history']" class="history-link">Favourite Cities</a>
-      </div>
-
+ 
       <div *ngIf="isLoading" class="loading-indicator">
         Loading...
       </div>

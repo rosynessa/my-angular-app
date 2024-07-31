@@ -4,10 +4,12 @@ body {
   color: #00203F;
   margin: 0;
   font-family: Arial, sans-serif;
+
+  
 }
 
 .nav-bar{
-  background-color: #145DA0;
+  background-color: #223A59;
   margin: 0%;
   padding: 0%;
   height: 70px;
@@ -69,7 +71,7 @@ body {
 
 /* Button styling */
 .input-button {
-  background-color: #145DA0;
+  background-color: #758BA5;
   color: white;
   border: none;
   border-radius: 10px;
