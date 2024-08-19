@@ -1,13 +1,13 @@
 /* material-dialog.component.css */
 .popup-container{
     background-color: white;
-    height: 200px;
+    height: 170px;
 }
 h1 {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 16px;
-    color: #2E8BC0; /* Primary color */
+    margin-bottom: 5px;
+    color: #223A59; /* Primary color */
     text-align: center;
    
 
@@ -16,7 +16,7 @@ h1 {
   div[mat-dialog-content] {
     font-size: 16px;
     color: white; /* Dark text color */
-    margin-bottom: 24px;
+    margin-bottom: 10px;
     text-align: center;
   
   }
@@ -29,14 +29,15 @@ h1 {
   }
   
   button[mat-button] {
-    background-color: #2E8BC0; /* Primary color */
+    background-color: #223A59; /* Primary color */
     color: white;
     border-radius: 4px;
     padding: 8px 16px;
     text-transform: uppercase;
+    margin: 16px;
   }
   
   button[mat-button]:hover {
-    background-color: #303f9f; /* Darker primary color */
+    background-color: #00203F; /* Darker primary color */
   }
   

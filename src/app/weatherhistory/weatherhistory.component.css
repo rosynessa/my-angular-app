@@ -1,28 +1,28 @@
 
+/* General Body Styles */
 body {
   height: 100%;
   color: #00203F;
   margin: 0;
   font-family: Arial, sans-serif;
 
-  
 }
 
-.nav-bar{
+/* Navigation Bar Styles */
+.nav-bar {
   background-color: #223A59;
   margin: 0%;
   padding: 0%;
   height: 70px;
   width: 100%;
   display: flex;
- overflow: hidden;
- align-items: center;
- box-sizing: border-box;
- padding: 0 20px;
-
+  overflow: hidden;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 20px;
 }
 
-.nav-bar a{
+.nav-bar a {
   float: left;
   color: #f2f2f2;
   text-align: center;
@@ -32,18 +32,18 @@ body {
   font-weight: bold;
 }
 
-.nav-bar a:hover{
-  background-color:#00203F;
+.nav-bar a:hover {
+  background-color: #00203F;
   color: white;
   height: 100%;
 }
 
-.nav-bar a:active{
+.nav-bar a:active {
   color: black;
 }
 
-.searching-container{
-
+/* Searching Container Styles */
+.searching-container {
   display: flex;
   align-items: center; /* Vertically align items */
   margin: 20px auto; /* Center container horizontally */
@@ -52,15 +52,7 @@ body {
   position: relative;
 }
 
-.insert{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 20px;
-  margin-bottom: 40px;
-  margin-top: 5px;
-}
-
+/* Input Field Styles */
 .input-bar {
   flex: 1; /* Allow the input to grow and fill available space */
   padding: 10px;
@@ -69,9 +61,9 @@ body {
   font-size: 16px;
 }
 
-/* Button styling */
+/* Button Styles */
 .input-button {
-  background-color: #758BA5;
+  background-color: #223A59;
   color: white;
   border: none;
   border-radius: 10px;
@@ -85,43 +77,88 @@ body {
   background-color: #00203F;
 }
 
+/* Container for Favorite Cities */
+.insert {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  margin-bottom: 40px;
+  margin-top: 5px;
+
+}
+
+/* List Styles */
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex; /* Makes the list items align horizontally */
+  margin-left: 130px;
   flex-wrap: wrap; /* Allows the items to wrap to the next line if they exceed the container width */
 }
 
-li{
-  display: flex;
-  align-items: center;
-  width: 500px;
-  height: 100px; /* Adjust height as needed */
-  background-size: cover;
-  background-position: center;
-  margin: 50px; /* Space between rows */
-  padding: 5px;
+/* City Card Styles */
+.city-container {
+  position: relative;
+  overflow: hidden; /* Hide any overflow for the pop-up effect */
+  width: 565px;
+  height: 100%;
+  margin: 60px;
   border-radius: 10px;
-  color: #00203F;
-  position: relative; /* Relative positioning to position child elements absolutely */
+  background-color: #758BA5;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   
 }
 
-.city-link{
-  font-size: 30px;
-  color: white;
-  text-decoration: none;
+/* Pop-up Effect on Hover */
+.city-container:hover {
+  transform: scale(1.05); /* Slightly enlarge the card */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
 }
 
-.city-link:hover{
+/* Style for Clickable Card Link */
+.city-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+/* Card Content Styling */
+.city-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 10px;
+  color: white;
+}
+
+/* City Information Styling */
+.city-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+}
+
+/* City Link Styling */
+.city-link {
+  font-size: 30px;
+  text-decoration: none;
+  color: white;
+}
+
+.city-link:hover {
   color: #00203F;
 }
 
-.action-buttons{
-  position: absolute; /* Absolute positioning for precise placement */
-  top: 10px; /* Distance from the top edge of city-container */
-  right: 10px; /* Distance from the right edge of city-container */
+/* Action Buttons Styling */
+.action-buttons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -131,17 +168,61 @@ li{
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
-  margin: 0;
 }
 
 .remove-bin {
-  width: 24px; /* Adjust size as needed */
-  height: 24px; /* Adjust size as needed */
-  vertical-align: middle;
-  
+  width: 24px;
+  height: 24px;
 }
 
-.remove-bin:hover{
-  color: white;
+.remove-bin:hover {
+  opacity: 0.8; /* Optional: Add a transition effect for remove button hover */
 }
+
+.carousel-view {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+
+}
+
+.prev-button,
+.next-button {
+  background-color: #3b4a5a;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+.forecast-hour-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  max-width: 100%;
+  height: 150px;
+  width: 92vw;
+  font-weight: bold;
+  font-size: 1em;
+  padding-top: 5px;
+  margin: 10px 0;
+
+}
+
+.forecast-hour-container::-webkit-scrollbar {
+  display: none;
+}
+
+
+.forecast-hour{
+  min-width: 100px;
+  margin: 0 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color:#00203F;
+  text-align: center;
+  border-radius: 10px;
+
+}
+

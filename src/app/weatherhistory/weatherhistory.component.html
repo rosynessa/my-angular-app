@@ -1,29 +1,47 @@
 
 <body>
-
   <nav class="nav-bar">
-        <a [routerLink]="['/home']">Home</a>
+    <a [routerLink]="['/home']">Home</a>
+    <a [routerLink]="['/history']">Favorite City</a>
   </nav>
 
-
   <div class="searching-container">
- 
-      <input [(ngModel)]="newFavoriteCity" placeholder="Enter city name" class="input-bar" />
-      
-      <button (click)="addFavoriteCity()" class="input-button">Add Favorite City</button>
+    <input [(ngModel)]="newFavoriteCity" placeholder="Enter city name" class="input-bar" />
+    <button (click)="addFavoriteCity()" class="input-button">Add Favorite City</button>
   </div>
 
   <div class="insert">
-      <ul>
-        <li *ngFor="let city of favoriteCities" [ngStyle]="{'background-image': 'url(' + getRandomBackground() + ')'}" >
-          <div class="city-container">
-         <div class="city-info">
-
-         </div>
-         <div class="action-buttons">
-          <button class="remove" (click)="deleteCity(city.id)">
-          <img class="remove-bin" src="assets/recycle.png" alt="bin"/>
-          </button>
-         </div>
-          <a [routerLink]="['/city', city.city]" class="city-link">{{city.city}}</a>
+    <ul>
+      <li *ngFor="let city of favoriteCities" class="city-container">
+        <a [routerLink]="['/city', city.city]" class="city-card-link">
+          <div class="city-content">
+            <div class="city-info">
+              <a [routerLink]="['/city', city.city]" class="city-link">{{city.city}}</a>
+              <div *ngIf="weatherData">
+                <div class="weather-section">
+                  <h2 class="weather-city">{{ weatherData.name }}</h2>
+                  <div class="weather-icon">
+                    <p><img [src]="iconUrl" alt="weather-icon"></p>
+                  </div>
+              </div>
+            </div>
+          </div>
         
+        <div class="action-buttons">
+          <button class="remove" (click)="deleteCity(city.id); $event.stopPropagation();  $event.preventDefault();">
+            <img class="remove-bin" src="assets/recycle.png" alt="bin"/>
+          </button>  
+        </div>
+   
+        <section class="forecast-section" *ngIf="hourlyData && hourlyData.length">
+          <div class="carousel-view">
+            <button id="prev-button" class="prev-button" (click)="scrollLeft(); $event.stopPropagation();  $event.preventDefault();"><</button>
+            <div class="forecast-hour-container">
+              <div class="forecast-hour" *ngFor="let hour of hourlyData">
+                <span class="material-icons">{{ getIcon(hour.icon) }}</span>
+                <p>{{ hour.datetime }} {{ hour.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }} </p>
+              </div>
+            </div>
+            <button id="next-button" class="next-button" (click)="scrollRight(); $event.stopPropagation();  $event.preventDefault();">></button>
+                
+                

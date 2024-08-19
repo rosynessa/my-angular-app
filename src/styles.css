@@ -3,10 +3,13 @@
     padding: 0;
     box-sizing: border-box;
 
-    color: #00203F;
+
   }
     
 
-html, body { height: 100%;  background-color: #E0F7FA; }
+html, body { height: 100%;  background-color: #E0F7FA; background-image: url(background.jpg); background-position: center; background-repeat: no-repeat; background-size: cover; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -4,8 +4,8 @@
     <p>{{ data.message }}</p>
   </div>
   <div mat-dialog-actions>
-    <button mat-button (click)="onConfirm()" >Yes</button>
-    <button mat-button (click)="onCancel()">No</button>
-    <button mat-button (click)="onYes()"  >OK</button>
+    <button mat-button (click)="onConfirm() " *ngIf="data.confirmation" >Yes</button>
+    <button mat-button (click)="onCancel()" *ngIf="data.confirmation">No</button>
+    <button mat-button (click)="onYes()"  *ngIf="data.showOkButton">OK</button>
   </div>
 </div>

@@ -1,5 +1,7 @@
 <div class = "navigation-bar">
+  <a [routerLink]="['/home']" class="home-link">Home</a>
   <a [routerLink]="['/history']" class="history-link">Favourite Cities</a>
+
 </div>
 
 <div class="weather-all">
@@ -9,18 +11,15 @@
     <div class="row">
       <form class="col" id="search-form"></form>
 
-      <div class="top-buttons">
+  
+      <div class="search-container">
+        <input type="text" name="cityName" class="search-input" placeholder="Enter a city name" [(ngModel)]="city">
+        <button type="button" (click)="getWeather(); getForecastWeather(); getDailyWeather()" class="search-button">Search</button>
+        <button  type="button" (click)="addFavoriteCity()" class="favorite-button" >Add City to Favorites</button>
         <button type="button" (click)="toggleTemperatureUnit()" class="toggle">
           {{ isCelsius ? 'Fahrenheit°' : 'Celcius°' }}
        </button>
       
-          <button type="button" (click)="addFavoriteCity()" class="favorite-button">Add Favorite City</button>
-        </div>
-
-
-      <div class="search-container">
-        <input type="text" name="cityName" class="search-input" placeholder="Enter a city name" [(ngModel)]="city">
-        <button type="button" (click)="getWeather(); getForecastWeather(); getDailyWeather()" class="search-button">Search</button>
       </div>
       
 
@@ -30,13 +29,16 @@
       </div>
 
       <div *ngIf="!isLoading">
+        <div class="weatherr">
         <div class="weather-section" *ngIf="weatherData">
           <h2 class="weather-city">{{ weatherData.name }}</h2>
           <div class="weather-icon">
             <p><img src="{{ iconUrl }}" alt="weather-icon"></p>
           </div>
           <p class="weather-temp">{{ weatherData?.main?.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
-          <p class="weather-description">Weather: {{ weatherData.weather[0].description }}</p>
+          <p class="weather-description"> {{ weatherData.weather[0].description }}</p>
+          <p class="weather-humidity">Humidity: {{weatherData.main.humidity}}</p>
+          <p class="weather-pressure">Pressure: {{weatherData.main.pressure}}</p>
         </div>
 
         <section class="daily-section">
@@ -46,6 +48,7 @@
             <div class="daily-container">
               <div class="daily-day" *ngFor="let day of dailyData">
                 <div class="daily-temp">
+                  <p>{{ day?.datetime}}</p>
                   <span class="material-icons">{{ getIcon(day.icon) }}</span>
                   <p>{{ day?.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
                   <p>Humidity: {{ day?.humidity }}</p>
@@ -78,6 +81,6 @@
         </section>
       </div>
     </div>
-  </section>
+
 </div>
 

@@ -1,24 +1,52 @@
 
 <body>
   <div class="favcity">
-    <a [routerLink]="['/history']" class="favcity-link">Favorite City</a>
+    <a [routerLink]="['/home']">Home</a>
+    <a [routerLink]="['/history']">Favorite City</a>
   </div>
-<div city-details-container>
-<div *ngIf="isLoading">
-    Loading weather data...
-  </div>
-  <div *ngIf="!isLoading && weatherData">
-    <div class="weather-section">
-      <h2 class="weather-city">{{ weatherData.name }}</h2>
-      <div class="weather-icon">
-        <p><img [src]="iconUrl" alt="weather-icon"></p>
-      </div>
-      <p class="weather-temp">{{ weatherData.main.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
-      <p class="weather-description">Weather: {{ weatherData.weather[0].description }}</p>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h3 class="weather-title">Weather History for {{ city }}</h3>
+  <div *ngIf="!isLoading && WeatherHistory.length > 0" class="weather-history-section">
+    <div *ngFor="let record of WeatherHistory" class="weather-history-record">
+      <p>Date: {{ record.searchTime | date:'short' }}</p>
+      <p>Temperature:{{ record.temperature }}°C</p>
+      <p>Description:{{ record.description }}</p>
     </div>
-    <button (click)="toggleTemperatureUnit()" class="toggle-button">Switch to {{ isCelsius ? 'Fahrenheit' : 'Celsius' }}</button>
   </div>
-  <div *ngIf="!isLoading && !weatherData">
-    No weather data available.
+
+  <div *ngIf="!isLoading && WeatherHistory.length === 0 && weatherData">
+    No weather history available for this city.
+  </div>
+    </aside>
+
+  <main class="content">
+    <div *ngIf="isLoading">
+      Loading weather data...
+    </div>
+    <div *ngIf="!isLoading && weatherData">
+      <div class="weather-section">
+        <h2 class="weather-city">{{ weatherData.name }}</h2>
+        <div class="weather-icon">
+          <p><img [src]="iconUrl" alt="weather-icon"></p>
+        </div>
+  
+        <p class="weather-temp">{{ weatherData.main.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
+        <p class="weather-description">Weather: {{ weatherData.weather[0].description }}</p>
+        <p class="weather-humidity">Humidity: {{ weatherData.main.humidity }}</p>
+        <p class="weather-pressure">Pressure: {{ weatherData.main.pressure }}</p>
+      </div>
+      <button (click)="toggleTemperatureUnit()" class="toggle-button">Switch to {{ isCelsius ? 'Fahrenheit' : 'Celsius' }}</button>
+    </div>
+
+    <div *ngIf="!isLoading && !weatherData">
+      No weather data available.
+    </div>
+  </main>
   </div>
   
+
+    <!-- Weather History Section -->
+    
+

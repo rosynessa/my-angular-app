@@ -41,7 +41,7 @@
 
 }
 
- .history-link{
+ .history-link, .home-link, .favcity-link{
   float: left;
   color: #f2f2f2;
   text-align: center;
@@ -51,7 +51,7 @@
   font-weight: bold;
 }
 
-.history-link:hover{
+.history-link:hover, .home-link:hover, .favcity-link:hover{
   background-color: #00203F;
   height: 100%;
 }
@@ -93,9 +93,9 @@
   outline: none;
 }
 
-.search-button {
+.search-button, .favorite-button {
 
-  background-color: #758BA5;
+  background-color: #223A59;
   color: white;
   padding: 5px 10px;
   margin: 5px;
@@ -103,15 +103,22 @@
   height: 40px;
 }
 
-.toggle, .favorite-button{
-  background-color: #758BA5;
+.toggle{
+  background-color: #223A59;
   color: white;
   padding: 5px 10px;
   margin:5px;
   border-radius: 10px;
   height: 40px;
+}
 
+.toggle:hover, .search-button:hover, .favorite-button:hover{
+  background-color: #0056b3;
 
+}
+
+.toggle:active, .search-button:active, .favorite-button:active{
+  background-color: #758BA5;
 }
 
 .actions-container {
@@ -120,13 +127,11 @@
   margin-top: 0px;
 }
 
-
-
 .weather-section {
   width: 300px;
   padding: 15px;
   text-align: center;
-  background: #223A59;
+  background: #00203F;
   margin: 10px;
   border-radius: 10px;
   color: white;
@@ -154,7 +159,7 @@
   margin-bottom: 2px;
 }
 
-.weather-description {
+.weather-description, .weather-humidity{
   font-size: 1.2em;
   color: white;
   margin-top: 5px;
@@ -192,6 +197,7 @@
   font-size: 1.4em;
   text-align: center;
   margin-bottom: 10px;
+  color: #00203F;
 }
 
 .forecast-hour-container, .daily-container {
@@ -199,7 +205,7 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   max-width: 100%;
-  height: 150px;
+  height: 190px;
   width: 92vw;
   font-weight: smaller;
   margin: 10px 0;
@@ -216,6 +222,7 @@
   background-color:#758BA5;
   text-align: center;
   border-radius: 10px;
+  color: #00203F;
 }
 
 .material-icons.sunny-icon {
@@ -241,3 +248,5 @@
 .material-icons.clear-night-icon {
   color: yellow;
 }
+
+

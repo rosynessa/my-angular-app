@@ -1,27 +1,41 @@
 .body{
-  
-        background-color: #145DA0; /* Blue color, change to your preferred shade */
+        background-image: url(assets/background.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         margin: 0;
         font-family: Arial, sans-serif; /* Optional: Set a default font */
-        color: #00203F; /* Optional: Set default text color */
-      
+        color: #00203F; /* Optional: Set default text color */  
 }
 
-
-.city-details-container {
+  .container{
     display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #E0F7FA; /* Background color for content area */
-  border-radius: 10px;
-  width: 90%; /* Adjust width as needed */
-  max-width: 600px; /* Limit the maximum width */
-  min-height: 100vh; /* Ensure the container takes full viewport height */
-  margin: 0 auto; /* Center container horizontally */
+    flex-direction: row;
+    max-width: 1200px;
+    margin-left: 0px;
+    padding: 20px;
+    gap: 20px;
   }
-  
+
+  .sidebar{
+    flex: 1;
+    background-color: #00203F;
+    color: white;
+    padding: 15px;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .content{
+    flex: 2;
+
+    border-radius: 10px;
+    padding: 2px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  }
+
   /* Loading indicator */
   .loading-indicator {
     font-size: 1.5em;
@@ -31,15 +45,15 @@
   
   /* Weather section */
   .weather-section {
-    background-color: #145DA0;
-    width: 300px;
+    background-color: #00203F;
+    width: 350px;
     padding: 15px;
     text-align: center;
     margin: 10px;
     border-radius: 10px;
     color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-left: 500px;
+    margin-left: 150px;
     margin-top: 100px;
     
   }
@@ -48,6 +62,13 @@
     font-size: 2.5em;
     font-weight: bold;
     margin-bottom: 10px;
+  }
+
+  .weather-name{
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
   }
   
   .weather-icon {
@@ -63,7 +84,7 @@
     color: white;
   }
   
-  .weather-description {
+  .weather-description, .weather-humidity, .weather-pressure{
     font-size: 1.2em;
     color: white;
     margin-top: 5px;
@@ -71,7 +92,7 @@
   
   /* Toggle button */
   .toggle-button {
-    background-color: #145DA0;
+    background-color: #00203F;
     border: none;
     padding: 10px 20px;
     margin-top: 15px;
@@ -80,7 +101,7 @@
     border-radius: 50px;
     font-size: 1em;
     transition: background-color 0.3s;
-    margin-left: 500px;
+    margin-left: 150px;
   }
   
   .toggle-button:hover {
@@ -88,21 +109,61 @@
   }
   
  .favcity{
-  border-radius: 50px;
+ 
+  background-color: #223A59;
+  margin: 0%;
+  padding: 0%;
+  height: 70px;
+  width: 100%;
+  display: flex;
+ overflow: hidden;
+ align-items: center;
+ box-sizing: border-box;
+ padding: 0 20px;
  } 
 
- .favcity-link{
-  text-decoration: none; /* Remove underline */
-  color: #00203F; /* Text color */
-  background-color: #2E8BC0; /* Background color */
-  padding: 10px 20px; /* Padding */
-  border-radius: 50px; /* Rounded corners */
-  font-size: 16px; /* Font size */
-  display: inline-block; /* Ensure padding and background color apply correctly */
-  margin-bottom: 20px; /* Space below the link */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+ .favcity a{
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
  }
+ 
 
- .favcity-link{
-  background-color: #004494;
- }
+.favcity a:hover{
+  background-color:#00203F;
+  color: white;
+  height: 100%;
+}
+
+.favcity a:active{
+  color: black;
+} 
+ 
+.weather-title{
+  color: white;
+  
+}
+
+
+.weather-history-record p {
+  margin: 5px 0;
+  color: white;
+}
+
+@media (max-width : 768px){
+  .container{
+    flex-direction: column;
+
+  }
+
+  .sidebar{
+  
+    margin-bottom: 20px;
+  }
+}
+
+
