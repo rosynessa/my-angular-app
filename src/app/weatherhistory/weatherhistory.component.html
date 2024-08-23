@@ -38,7 +38,8 @@
             <button id="prev-button" class="prev-button" (click)="scrollLeft(); $event.stopPropagation();  $event.preventDefault();"><</button>
             <div class="forecast-hour-container">
               <div class="forecast-hour" *ngFor="let hour of hourlyData">
-                <span class="material-icons">{{ getIcon(hour.icon) }}</span>
+                <span class="material-icons" [ngStyle]="{'color': getColor(hour.icon)}">
+                  {{ getIcon(hour.icon) }}</span>
                 <p>{{ hour.datetime }} {{ hour.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }} </p>
               </div>
             </div>

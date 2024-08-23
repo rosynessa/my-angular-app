@@ -85,8 +85,9 @@ body {
   padding: 20px;
   margin-bottom: 40px;
   margin-top: 5px;
-
+ 
 }
+
 
 /* List Styles */
 ul {
@@ -106,13 +107,27 @@ ul {
   height: 100%;
   margin: 60px;
   border-radius: 10px;
-  background-color: #758BA5;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(145deg, #1e3a52, #223a59);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
   
 }
 
+
+.city-container:before{
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(255,255,255,0) 70%);
+  opacity: 0.6;
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+}
+
 /* Pop-up Effect on Hover */
-.city-container:hover {
+.city-container:hover{
   transform: scale(1.05); /* Slightly enlarge the card */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
 }
@@ -220,7 +235,7 @@ ul {
   min-width: 100px;
   margin: 0 10px;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color:#00203F;
+  background-color:#758BA5;
   text-align: center;
   border-radius: 10px;
 

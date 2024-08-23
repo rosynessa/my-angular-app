@@ -41,34 +41,16 @@
           <p class="weather-pressure">Pressure: {{weatherData.main.pressure}}</p>
         </div>
 
-        <section class="daily-section">
-          <h2 class="daily-title">Daily Forecast</h2>
-          <div class="carousel-view">
-            <button id="previous-button" class="prev-button" (click)="scrollLeft2()"><</button>
-            <div class="daily-container">
-              <div class="daily-day" *ngFor="let day of dailyData">
-                <div class="daily-temp">
-                  <p>{{ day?.datetime}}</p>
-                  <span class="material-icons">{{ getIcon(day.icon) }}</span>
-                  <p>{{ day?.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
-                  <p>Humidity: {{ day?.humidity }}</p>
-                  <p>Conditions: {{ day?.conditions }}</p>
-                </div>
-              </div>
-            </div>
-            <button id="next-button2" class="next-button" (click)="scrollRight2()">></button>
-          </div>
-        </section>
-
         <section class="forecast-section" *ngIf="hourlyData && hourlyData.length">
           <h2 class="forecast-title">Hourly Forecast</h2>
           <div class="carousel-view">
             <button id="prev-button" class="prev-button" (click)="scrollLeft()"><</button>
             <div class="forecast-hour-container">
               <div class="forecast-hour" *ngFor="let hour of hourlyData">
-                <p>{{ hour.datetime }}</p>
+                <p>{{ formatTime(hour.datetime) }}</p>
                 <div class="forecast-temp">
-                  <span class="material-icons">{{ getIcon(hour.icon) }}</span>
+                  <span class="material-icons" [ngStyle]="{'color': getColor(hour.icon)}">
+                     {{ getIcon(hour.icon) }}</span>
                   <p>{{ hour.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
                   <p>{{ hour?.description }}</p>
                   <p>Humidity: {{ hour.humidity }}</p>
@@ -79,6 +61,27 @@
             <button id="next-button" class="next-button" (click)="scrollRight()">></button>
           </div>
         </section>
+
+        <section class="daily-section">
+          <h2 class="daily-title">Daily Forecast</h2>
+          <div class="carousel-view">
+            <button id="previous-button" class="prev-button" (click)="scrollLeft2()"><</button>
+            <div class="daily-container">
+              <div class="daily-day" *ngFor="let day of dailyData">
+                <div class="daily-temp">
+                  <p>{{ day?.datetime}}</p>
+                  <span class="material-icons" [ngStyle]="{'color': getColor(day.icon)}">{{ getIcon(day.icon) }}</span>
+                  <p>{{ day?.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
+                  <p>Humidity: {{ day?.humidity }}</p>
+                  <p>Conditions: {{ day?.conditions }}</p>
+                </div>
+              </div>
+            </div>
+            <button id="next-button2" class="next-button" (click)="scrollRight2()">></button>
+          </div>
+        </section>
+
+      
       </div>
     </div>
 

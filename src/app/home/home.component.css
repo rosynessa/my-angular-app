@@ -30,7 +30,7 @@
   margin: 0;
   padding: 0;
   background-color: #223A59;
-  height: 70px;
+  height: 50px;
   width: 100%;
   margin: 0%;
   display: flex;
@@ -38,6 +38,7 @@
   align-items: center;
   box-sizing: border-box;
   padding: 0 20px;
+
 
 }
 
@@ -71,9 +72,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   width: 50%;
   margin-left: 360px;
+  font-size: 40px;
+  margin-top: 20px;
 
 }
 
@@ -127,17 +130,119 @@
   margin-top: 0px;
 }
 
-.weather-section {
-  width: 300px;
-  padding: 15px;
+.weather-section, .forecast-section, .daily-section {
+  width: 90%;
+  padding: 10px;
   text-align: center;
-  background: #00203F;
-  margin: 10px;
-  border-radius: 10px;
+  background: linear-gradient(145deg, #1e3a52, #223a59);
+  border-radius: 15px;
   color: white;
-  margin: 20px auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 40px auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
 }
+
+.weather-section:before, .forecast-section:before, .daily-section:before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(255,255,255,0) 70%);
+  opacity: 0.6;
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+}
+
+.weather-section:hover:before, .forecast-section:hover:before, .daily-section:hover:before {
+  left: 100%;
+  top: 100%;
+}
+
+.weather-city, .daily-title, .forecast-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.weather-temp {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.weather-icon, .material-icons {
+  font-size: 4em;
+  color: white;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.weather-description, .weather-humidity, .weather-pressure {
+  font-size: 1.2em;
+  color: white;
+  margin-top: 10px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.forecast-hour-container, .daily-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  max-width: 100%;
+  height: 240px;
+  width: 95vw;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.forecast-hour, .daily-day {
+  min-width: 200px;
+  margin: 0 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  text-align: center;
+  border-radius: 15px;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.forecast-hour:hover, .daily-day:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.prev-button, .next-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.prev-button:hover, .next-button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+
+
+
+
 
 .weather-city {
   font-size: 2.5em;
@@ -177,20 +282,7 @@
   margin: 20px 0;
 }
 
-.prev-button,
-.next-button {
-  background-color: #3b4a5a;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 5px;
-}
 
-.prev-button:hover,
-.next-button:hover {
-  background-color: #0056b3;
-}
 
 .daily-title, .forecast-title {
   font-weight: bold;
@@ -200,17 +292,7 @@
   color: #00203F;
 }
 
-.forecast-hour-container, .daily-container {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  max-width: 100%;
-  height: 190px;
-  width: 92vw;
-  font-weight: smaller;
-  margin: 10px 0;
 
-}
 
 .forecast-hour-container::-webkit-scrollbar, .daily-container::-webkit-scrollbar {
   display: none;
@@ -223,30 +305,14 @@
   text-align: center;
   border-radius: 10px;
   color: #00203F;
+  font-size: large;
+  font-weight: bold;
+
 }
 
-.material-icons.sunny-icon {
-  color: orange;
-}
+.material-icons{
 
-.material-icons.rainy-icon {
-  color: blue;
+  font-size: 40px;
+ 
 }
-
-.material-icons.cloudy-icon {
-  color: gray;
-}
-
-.material-icons.snowy-icon {
-  color: lightblue;
-}
-
-.material-icons.stormy-icon {
-  color: purple;
-}
-
-.material-icons.clear-night-icon {
-  color: yellow;
-}
-
 

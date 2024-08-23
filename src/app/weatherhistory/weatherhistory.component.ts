@@ -190,4 +190,32 @@ export class WeatherhistoryComponent implements OnInit {
     container.scrollBy({ left: 1000, behavior: 'smooth' });
   }
 
+  public getColor(condition: string): string {
+    switch (condition) {
+      case 'clear-day':
+        return 'orange';
+      case 'clear-night':
+        return 'lightblue';
+      case 'rain':
+        return 'blue';
+      case 'snow':
+        return 'lightblue';
+      case 'sleet':
+        return 'gray';
+      case 'wind':
+        return 'lightgray';
+      case 'fog':
+        return 'darkgray';
+      case 'cloudy':
+        return 'gray';
+      case 'partly-cloudy-day':
+        return 'lightgray';
+      case 'partly-cloudy-night':
+        return 'white';
+      default:
+        return 'orange';
+    }
+  }
+  
+
 }

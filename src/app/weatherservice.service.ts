@@ -48,8 +48,11 @@ apiURL = 'http://localhost:4201';
     public getIcon(condition: string): string {
       switch (condition) {
         case 'clear-day':
-        case 'clear-night':
           return 'wb_sunny';
+
+        case 'clear-night':
+          return 'nights_stay';
+
         case 'rain':
           return 'umbrella';
         case 'snow':
@@ -69,6 +72,8 @@ apiURL = 'http://localhost:4201';
           return 'wb_sunny';
       }
     }
+
+    
 
 
     addFavoriteCity(userId: number, city: string): Observable<any> {
