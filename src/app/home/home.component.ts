@@ -74,12 +74,14 @@ export class HomeComponent implements OnInit {
 
   getForecastWeather(): void {
     this.isLoading = true;
+    this.hourlyData = [];
     this.weatherserviceservice.getForecastWeather(this.city).subscribe((data: any) => {
       console.log(data.hourly);
       this.hourlyData = data.days[0].hours.map((hour: any) => ({
         ...hour,
-        temp: hour.temp
+
       }));
+      console.log('Hourly Data:', this.hourlyData);
       this.isLoading = false;
     }, error => {
       this.isLoading = false;
@@ -100,6 +102,7 @@ export class HomeComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
 
   
   scrollLeft() {
@@ -182,32 +185,6 @@ export class HomeComponent implements OnInit {
 
   }
 
-  public getColor(condition: string): string {
-    switch (condition) {
-      case 'clear-day':
-        return 'orange';
-      case 'clear-night':
-        return 'lightblue';
-      case 'rain':
-        return 'blue';
-      case 'snow':
-        return 'lightblue';
-      case 'sleet':
-        return 'gray';
-      case 'wind':
-        return 'lightgray';
-      case 'fog':
-        return 'darkgray';
-      case 'cloudy':
-        return 'gray';
-      case 'partly-cloudy-day':
-        return 'lightgray';
-      case 'partly-cloudy-night':
-        return 'white';
-      default:
-        return 'orange';
-    }
-  }
-  
+ 
 
 }

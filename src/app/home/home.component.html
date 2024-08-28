@@ -49,12 +49,12 @@
               <div class="forecast-hour" *ngFor="let hour of hourlyData">
                 <p>{{ formatTime(hour.datetime) }}</p>
                 <div class="forecast-temp">
-                  <span class="material-icons" [ngStyle]="{'color': getColor(hour.icon)}">
-                     {{ getIcon(hour.icon) }}</span>
+                  <span class="material-icons">{{ getIcon(hour.icon) }}</span>
                   <p>{{ hour.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
                   <p>{{ hour?.description }}</p>
                   <p>Humidity: {{ hour.humidity }}</p>
                   <p>Conditions: {{ hour.conditions }}</p>
+                  <p>City: {{city}}</p>
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@
               <div class="daily-day" *ngFor="let day of dailyData">
                 <div class="daily-temp">
                   <p>{{ day?.datetime}}</p>
-                  <span class="material-icons" [ngStyle]="{'color': getColor(day.icon)}">{{ getIcon(day.icon) }}</span>
+                  <span class="material-icons">{{ getIcon(day.icon) }}</span>
                   <p>{{ day?.temp | number:'1.0-1' }}° {{ isCelsius ? 'C' : 'F' }}</p>
                   <p>Humidity: {{ day?.humidity }}</p>
                   <p>Conditions: {{ day?.conditions }}</p>

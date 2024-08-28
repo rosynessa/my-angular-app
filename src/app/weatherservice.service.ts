@@ -24,9 +24,8 @@ apiURL = 'http://localhost:4201';
 
  public getForecastWeather(city:String): Observable<any>{
   console.log(city)
-  return this.httpClient.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{city}?unitGroup=metric&key=${this.foreCastKey}&contentType=json`);
-
-  }
+  return this.httpClient.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&include=hours&key=${this.foreCastKey}&contentType=json`);
+ }
 
   public getDailyWeather(city:String): Observable<any>{
     console.log(city)
